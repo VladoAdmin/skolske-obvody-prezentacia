@@ -31,46 +31,51 @@
   .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}
   .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;
     box-shadow:0 1px 2px rgba(16,30,60,.04)}
-  .card h3{font-size:1.05rem;color:var(--navy);margin-bottom:.3em}
-  .card p{font-size:1.0rem;color:var(--muted)}
+  .card h3{font-size:1.05rem;color:var(--navy);margin-bottom:.4em}
+  .card p{font-size:1.05rem;color:var(--ink)}
   .pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;
     text-transform:uppercase;letter-spacing:.06em}
   .hard{background:#e7f4f2;color:var(--teal-d)}.soft{background:#fbf2da;color:#9a7300}
+  .letter{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+    border-radius:9px;background:var(--navy);color:#fff;font-weight:800;font-size:1.05rem;margin-right:12px}
+  .htitle{display:flex;align-items:center}
   table{width:100%;border-collapse:collapse;margin-top:1em;font-size:1.02rem}
-  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
   th{color:var(--navy);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
   td .code{font-weight:800;color:var(--teal-d)}
   .flow{display:flex;align-items:stretch;gap:0;margin-top:1.6em;flex-wrap:wrap}
-  .step{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:12px;
-    padding:16px;position:relative}
+  .step{flex:1;min-width:150px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
   .step b{color:var(--navy)}.step span{display:block;color:var(--muted);font-size:.95rem;margin-top:.3em}
   .arrow{display:flex;align-items:center;color:var(--teal);font-size:1.6rem;padding:0 6px}
   .sem{display:inline-block;width:13px;height:13px;border-radius:50%;margin-right:7px;vertical-align:middle}
   .sem.g{background:var(--green)}.sem.a{background:var(--amber)}.sem.r{background:var(--red)}
+  .prah{margin-top:1.1em;background:#eef6f4;border:1px solid #cfe6e1;border-radius:12px;padding:14px 18px}
+  .prah p{font-size:1.05rem;color:var(--ink)}
   .foot{position:absolute;bottom:3vh;left:9vw;right:9vw;display:flex;justify-content:space-between;
     align-items:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:10px}
   .nav{position:absolute;bottom:2.4vh;right:9vw;display:flex;gap:8px}
   .nav button{border:1px solid var(--line);background:#fff;border-radius:8px;width:38px;height:34px;
     font-size:1.1rem;cursor:pointer;color:var(--navy)}
   .nav button:hover{background:var(--navy);color:#fff}
-  .big{font-size:4.2rem;color:var(--teal-d);font-weight:800}
   .q{font-size:2.2rem;color:var(--navy);font-weight:750;max-width:24ch;line-height:1.2}
   .tag{font-size:.95rem;color:var(--muted)}
+  .agenda{list-style:none;margin:1em 0 0 0;columns:1}
+  .agenda li{display:flex;align-items:center;margin:.5em 0;font-size:1.18rem}
 </style>
 </head>
 <body>
 <div class="deck" id="deck">
 
-  <!-- 1 -->
+  <!-- 1 · Titulná -->
   <section class="slide active">
     <div class="kicker">Návrh riešenia · pre konzultáciu so zákazníkom</div>
     <h1>Kontrola dodržiavania §44<br>verejné školské obvody</h1>
     <p class="lead">Ako automaticky a objektívne overiť, či obce a kraje určujú školské obvody
     v súlade so zákonom č. 321/2025 Z. z. o školskej správe.</p>
-    <p class="tag" style="margin-top:2em">Pilot: Prešovský kraj · Verzia 0.1</p>
+    <p class="tag" style="margin-top:2em">Pilot: Prešovský kraj · Verzia 0.2</p>
   </section>
 
-  <!-- 2 -->
+  <!-- 2 · Problém -->
   <section class="slide">
     <div class="kicker">Problém</div>
     <h2>Zákon žiada veľa, ale nemeria nič</h2>
@@ -86,12 +91,12 @@
     </div>
   </section>
 
-  <!-- 3 -->
+  <!-- 3 · Náš prístup -->
   <section class="slide">
     <div class="kicker">Náš prístup</div>
     <h2>Každú podmienku §44 preložíme na merateľný test s dôkazom</h2>
     <ul>
-      <li><b>Tvrdé podmienky</b> (kapacita, vzdialenosť, doprava) overíme výpočtom nad
+      <li><b>Tvrdé podmienky</b> (kapacita, vzdialenosť, doprava, jazyk) overíme výpočtom nad
       geografickými a registrovými dátami.</li>
       <li><b>Mäkké podmienky</b> (segregácia, inklúzia) vyhodnotíme indexom + odôvodnením AI
       v jazyku zákona.</li>
@@ -101,7 +106,7 @@
     </ul>
   </section>
 
-  <!-- 4 -->
+  <!-- 4 · Ako to funguje -->
   <section class="slide">
     <div class="kicker">Ako to funguje</div>
     <h2>Od dát k dôkazu</h2>
@@ -118,89 +123,118 @@
     </div>
   </section>
 
-  <!-- 5 -->
+  <!-- 5 · Osnova -->
   <section class="slide">
-    <div class="kicker">Podmienky §44 ods. 8 — prehľad</div>
-    <h2>Šesť podmienok + štruktúra obvodu</h2>
+    <div class="kicker">Osnova · čo prejdeme na ďalších snímkach</div>
+    <h2>Šesť podmienok §44 ods. 8 + štruktúra obvodu</h2>
+    <p class="sub">Každú podmienku rozoberieme samostatne, vždy rovnako: čo definuje zákon
+    a ako ju vyhodnotíme.</p>
     <table>
-      <tr><th>Podmienka</th><th>Typ</th><th>Ako overujeme</th></tr>
-      <tr><td><span class="code">a</span> Kapacita budov</td><td><span class="pill hard">tvrdá</span></td><td>počet detí v obvode vs kapacita školy</td></tr>
-      <tr><td><span class="code">b</span> Vzdialenosť / dochádzka</td><td><span class="pill hard">tvrdá</span></td><td>reálna trasa z každej adresy do pridelenej školy</td></tr>
-      <tr><td><span class="code">c</span> Dopravná infraštruktúra</td><td><span class="pill hard">tvrdá</span></td><td>existuje spoj/cesta a je použiteľná?</td></tr>
-      <tr><td><span class="code">d</span> Jazykové právo</td><td><span class="pill hard">stredná</span></td><td>priradenie k škole so správnym jazykom</td></tr>
-      <tr><td><span class="code">e</span> Zákaz segregácie</td><td><span class="pill soft">mäkká</span></td><td>index koncentrácie + test izolácie osady</td></tr>
-      <tr><td><span class="code">f</span> Inkluzívne vzdelávanie</td><td><span class="pill soft">mäkká</span></td><td>rozloženie detí so ŠVVP medzi školami</td></tr>
+      <tr><th>Podmienka</th><th>Typ</th><th>Snímka</th></tr>
+      <tr><td><span class="code">a</span> Kapacita budov</td><td><span class="pill hard">tvrdá</span></td><td>6</td></tr>
+      <tr><td><span class="code">b</span> Vzdialenosť / dochádzka</td><td><span class="pill hard">tvrdá</span></td><td>7</td></tr>
+      <tr><td><span class="code">c</span> Dopravná infraštruktúra</td><td><span class="pill hard">tvrdá</span></td><td>8</td></tr>
+      <tr><td><span class="code">d</span> Jazykové právo</td><td><span class="pill hard">stredná</span></td><td>9</td></tr>
+      <tr><td><span class="code">e</span> Zákaz segregácie</td><td><span class="pill soft">mäkká</span></td><td>10</td></tr>
+      <tr><td><span class="code">f</span> Inkluzívne vzdelávanie</td><td><span class="pill soft">mäkká</span></td><td>11</td></tr>
+      <tr><td>Štruktúra obvodu (ods. 1 a 7)</td><td><span class="pill hard">tvrdá</span></td><td>12</td></tr>
     </table>
   </section>
 
-  <!-- 6 -->
+  <!-- 6 · a Kapacita -->
   <section class="slide">
-    <div class="kicker">Geografická os · podmienky b + c</div>
-    <h2>Dostupnosť a kvalita cesty do školy</h2>
+    <div class="kicker">Podmienka a · z osnovy</div>
+    <h2 class="htitle"><span class="letter">a</span> Kapacita budov</h2>
     <div class="grid g2">
-      <div class="card">
-        <h3>Čo zákon žiada</h3>
-        <p>Obvod určiť tak, aby vzdialenosť a dopravná infraštruktúra neohrozovali plnenie
-        povinnej dochádzky — žiadne cesty cez les, brod, či po nespevnenej ceste.</p>
-      </div>
-      <div class="card">
-        <h3>Ako to overíme</h3>
-        <p>Pre každý obývaný bod spočítame reálnu pešiu trasu do pridelenej školy. Ak je
-        priďaleko, overíme verejný spoj. Z mapy detegujeme nespevnené cesty, chýbajúce chodníky,
-        prechody cez vodný tok a les.</p>
-      </div>
+      <div class="card"><h3>Čo definuje zákon</h3><p>Pri určení obvodu zohľadniť kapacitu budov
+      školy tak, aby pridelená škola zvládla všetky deti z obvodu.</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Porovnáme počet detí školského veku
+      v obvode s kapacitou pridelenej školy. Flag pri preplnení aj pri podozrivo „škrtenom"
+      obvode, ktorý deti vytláča inam.</p></div>
     </div>
-    <p style="margin-top:1.1em"><b>Návrh prahu:</b> 1. stupeň ZŠ do 2 km / 30 min pešo,
-    vyšší stupeň do 4 km — inak musí existovať použiteľný spoj. <span class="sub">(doladí sa
-    s vami)</span></p>
+    <div class="prah"><p><b>Navrhovaný prah:</b> obsadenosť ≤ 100 % kapacity. &nbsp;·&nbsp;
+    <b>Dáta:</b> register škôl (kapacita), počet detí v obvode.</p></div>
   </section>
 
-  <!-- 7 -->
+  <!-- 7 · b Vzdialenosť -->
   <section class="slide">
-    <div class="kicker">Sociálna os · podmienky e + f</div>
-    <h2>Zákaz segregácie a inklúzia</h2>
+    <div class="kicker">Podmienka b · z osnovy</div>
+    <h2 class="htitle"><span class="letter">b</span> Vzdialenosť / dochádzka</h2>
     <div class="grid g2">
-      <div class="card">
-        <h3>Čo zákon žiada</h3>
-        <p>Obvod sa nesmie kresliť tak, aby vyčleňoval deti z osád či zo znevýhodneného
-        prostredia do oddelených škôl. Princíp inkluzívneho vzdelávania.</p>
-      </div>
-      <div class="card">
-        <h3>Ako to overíme</h3>
-        <p>Porovnáme podiel detí z komunít na úrovni obvodu vs jednotlivej školy a otestujeme,
-        či hranica obvodu geometricky izoluje osadu. Prahy podľa metodiky „Štandardov
-        dodržiavania zákazu segregácie" ministerstva.</p>
-      </div>
+      <div class="card"><h3>Čo definuje zákon</h3><p>Vzdialenosť z pobytu dieťaťa do školy taká,
+      aby nebolo ohrozené plnenie povinného predprimárneho vzdelávania a povinnej školskej
+      dochádzky.</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Pre každý obývaný adresný bod spočítame
+      reálnu pešiu trasu (nie vzdušnú čiaru) do pridelenej školy.</p></div>
     </div>
-    <p style="margin-top:1.1em" class="sub">Mäkké posúdenie: AI odlíši, či je koncentrácia daná
-    geografiou alebo úmyselným strihom obvodu, a odôvodní to v jazyku zákona.</p>
+    <div class="prah"><p><b>Navrhovaný prah:</b> ZŠ 1. stupeň ≤ 2 km / 30 min pešo; vyšší stupeň
+    ≤ 4 km; inak musí existovať použiteľný spoj. &nbsp;·&nbsp; <b>Dáta:</b> adresy, polohy škôl,
+    OpenStreetMap sieť + routing.</p></div>
   </section>
 
-  <!-- 7b -->
+  <!-- 8 · c Doprava -->
   <section class="slide">
-    <div class="kicker">Kapacita a jazyk · podmienky a + d</div>
-    <h2>Kapacita školy a právo na vyučovací jazyk</h2>
+    <div class="kicker">Podmienka c · z osnovy</div>
+    <h2 class="htitle"><span class="letter">c</span> Dopravná infraštruktúra</h2>
     <div class="grid g2">
-      <div class="card">
-        <h3><span class="code" style="color:var(--teal-d);font-weight:800">a</span> &nbsp;Kapacita budov</h3>
-        <p><b>Čo zákon žiada:</b> obvod určiť tak, aby pridelená škola kapacitne zvládla všetky
-        deti z obvodu.<br><b>Ako overíme:</b> porovnáme počet detí školského veku v obvode
-        s kapacitou školy — flag pri preplnení aj pri podozrivo „škrtenom" obvode, ktorý deti
-        vytláča inam.</p>
-      </div>
-      <div class="card">
-        <h3><span class="code" style="color:var(--teal-d);font-weight:800">d</span> &nbsp;Jazykové právo</h3>
-        <p><b>Čo zákon žiada:</b> deti s nárokom na štátny jazyk alebo jazyk národnostnej
-        menšiny musia byť priradené k škole s príslušným vyučovacím jazykom.<br><b>Ako overíme:</b>
-        porovnáme jazykový nárok detí v obvode s vyučovacím jazykom pridelenej školy; flag pri
-        nesúlade.</p>
-      </div>
+      <div class="card"><h3>Čo definuje zákon</h3><p>Pri určení obvodu zohľadniť dopravnú
+      infraštruktúru obce.</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Ak bod nie je pešo dostupný, overíme
+      existenciu a použiteľnosť verejného spoja. Z mapy detegujeme nespevnené cesty, chýbajúce
+      chodníky, prechody cez vodný tok a les.</p></div>
     </div>
-    <p style="margin-top:1.1em" class="sub">Týmto má každá zo 6 podmienok §44 ods. 8 vlastné
-    vysvetlenie spôsobu overenia.</p>
+    <div class="prah"><p><b>Navrhovaný prah:</b> flag ak nie je ani pešo ani spoj, alebo jediná
+    trasa vedie po nespevnenej ceste / cez brod / les. &nbsp;·&nbsp; <b>Dáta:</b> cestovné
+    poriadky (GTFS), OSM povrch/chodníky, vodné toky a lesy.</p></div>
   </section>
 
-  <!-- 8 -->
+  <!-- 9 · d Jazyk -->
+  <section class="slide">
+    <div class="kicker">Podmienka d · z osnovy</div>
+    <h2 class="htitle"><span class="letter">d</span> Jazykové právo</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo definuje zákon</h3><p>Právo detí na vzdelávanie v štátnom jazyku
+      alebo v jazyku príslušnej národnostnej menšiny.</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Porovnáme jazykový nárok detí v obvode
+      s vyučovacím jazykom pridelenej školy.</p></div>
+    </div>
+    <div class="prah"><p><b>Navrhovaný prah:</b> flag pri nesúlade — dieťa s nárokom na štátny
+    alebo menšinový jazyk priradené k škole bez tohto jazyka. &nbsp;·&nbsp; <b>Dáta:</b> register
+    škôl (vyučovací jazyk), zoznam obcí s menšinovým jazykom.</p></div>
+  </section>
+
+  <!-- 10 · e Segregácia -->
+  <section class="slide">
+    <div class="kicker">Podmienka e · z osnovy</div>
+    <h2 class="htitle"><span class="letter">e</span> Zákaz segregácie</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo definuje zákon</h3><p>Dodržiavanie zákazu segregácie vo výchove
+      a vzdelávaní (§3 zák. 245/2008 + minedu „Štandardy dodržiavania zákazu segregácie").</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Porovnáme podiel detí z komunít
+      a zo znevýhodneného prostredia na úrovni obvodu vs školy. Geometrický test, či hranica
+      obvodu izoluje osadu. Index nepodobnosti medzi školami.</p></div>
+    </div>
+    <div class="prah"><p><b>Navrhovaný prah:</b> koncentrácia výrazne nad priemerom obce (podľa
+    minedu „Štandardov"). &nbsp;·&nbsp; <b>AI:</b> odlíši, či je koncentrácia daná geografiou
+    alebo úmyselným strihom obvodu, a odôvodní to v jazyku zákona.</p></div>
+  </section>
+
+  <!-- 11 · f Inklúzia -->
+  <section class="slide">
+    <div class="kicker">Podmienka f · z osnovy</div>
+    <h2 class="htitle"><span class="letter">f</span> Inkluzívne vzdelávanie</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo definuje zákon</h3><p>Pri určení obvodu zohľadniť princíp
+      inkluzívneho vzdelávania.</p></div>
+      <div class="card"><h3>Ako to vyhodnotíme</h3><p>Posúdime rozloženie detí so špeciálnymi
+      výchovno-vzdelávacími potrebami (ŠVVP) medzi školami v obci.</p></div>
+    </div>
+    <div class="prah"><p><b>Navrhovaný prah:</b> flag pri koncentrácii detí so ŠVVP do jednej
+    školy namiesto rovnomerného rozloženia. &nbsp;·&nbsp; <b>Dáta:</b> počty detí so ŠVVP podľa
+    školy (CVTI / EDUZBER).</p></div>
+  </section>
+
+  <!-- 12 · Štruktúra obvodu -->
   <section class="slide">
     <div class="kicker">Štruktúra obvodu · §44 ods. 1 a 7</div>
     <h2>Tri tvrdé, priamo vymáhateľné pravidlá</h2>
@@ -212,11 +246,10 @@
       <div class="card"><h3>Jedna škola</h3><p>V jednom obvode práve jedna verejná škola daného
       druhu.</p></div>
     </div>
-    <p style="margin-top:1.1em" class="sub">Tieto sa dajú overiť úplne automaticky a binárne —
-    splnené / nesplnené.</p>
+    <div class="prah"><p>Tieto sa dajú overiť úplne automaticky a binárne — splnené / nesplnené.</p></div>
   </section>
 
-  <!-- 9 -->
+  <!-- 13 · Výstup -->
   <section class="slide">
     <div class="kicker">Výstup pre RÚŠS</div>
     <h2>Semaforový report + mapa + rebríček porušení</h2>
@@ -231,7 +264,7 @@
     <p class="sub">(ilustračné dáta)</p>
   </section>
 
-  <!-- 10 -->
+  <!-- 14 · Dáta -->
   <section class="slide">
     <div class="kicker">Transparentnosť dát</div>
     <h2>Každý údaj má zdroj, vek a hodnotenie kvality 1–10</h2>
@@ -248,7 +281,7 @@
     oficiálny zdroj bez prepisu modelu.</p>
   </section>
 
-  <!-- 11 -->
+  <!-- 15 · Čo potrebujeme -->
   <section class="slide">
     <div class="kicker">Čo potrebujeme od vás</div>
     <h2>Aby bol pilot postavený na reálnych dátach</h2>
@@ -262,7 +295,7 @@
     </div>
   </section>
 
-  <!-- 12 -->
+  <!-- 16 · Otázka -->
   <section class="slide" style="justify-content:center;align-items:flex-start">
     <div class="kicker">Otázka na vás</div>
     <p class="q">Je tento prístup k overovaniu §44 pre vás správny?</p>
@@ -274,7 +307,7 @@
 
 <div class="foot">
   <span>Kontrola §44 · verejné školské obvody · zákon 321/2025 Z. z.</span>
-  <span id="counter">1 / 12</span>
+  <span id="counter">1 / 16</span>
 </div>
 <div class="nav">
   <button onclick="go(-1)">‹</button>
