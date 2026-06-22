@@ -13,10 +13,13 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);overflow:hidden}
-  .deck{height:100vh;width:100vw;position:relative}
+    background:var(--bg);color:var(--ink);overflow:hidden;
+    -webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .deck *{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .stagewrap{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
+  .deck{width:1280px;height:720px;position:absolute;top:0;left:0;transform-origin:top left;background:var(--bg)}
   .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
-    padding:6vh 9vw;animation:fade .35s ease}
+    padding:48px 110px;animation:fade .35s ease}
   .slide.active{display:flex}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   h1{font-size:3.0rem;line-height:1.1;color:var(--navy);font-weight:800;letter-spacing:-.02em}
@@ -51,9 +54,9 @@
   .sem.g{background:var(--green)}.sem.a{background:var(--amber)}.sem.r{background:var(--red)}
   .prah{margin-top:1.1em;background:#eef6f4;border:1px solid #cfe6e1;border-radius:12px;padding:14px 18px}
   .prah p{font-size:1.05rem;color:var(--ink)}
-  .foot{position:absolute;bottom:3vh;left:9vw;right:9vw;display:flex;justify-content:space-between;
+  .foot{position:absolute;bottom:30px;left:110px;right:110px;display:flex;justify-content:space-between;
     align-items:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:10px}
-  .nav{position:absolute;bottom:2.4vh;right:9vw;display:flex;gap:8px}
+  .nav{position:absolute;bottom:24px;right:110px;display:flex;gap:8px}
   .nav button{border:1px solid var(--line);background:#fff;border-radius:8px;width:38px;height:34px;
     font-size:1.1rem;cursor:pointer;color:var(--navy)}
   .nav button:hover{background:var(--navy);color:#fff}
@@ -64,6 +67,7 @@
 </style>
 </head>
 <body>
+<div class="stagewrap">
 <div class="deck" id="deck">
 
   <!-- 1 · Titulná -->
@@ -303,8 +307,6 @@
     Prešovskom kraji a spolu doladíme prahy a zdroje dát.</p>
   </section>
 
-</div>
-
 <div class="foot">
   <span>Kontrola §44 · verejné školské obvody · zákon 321/2025 Z. z.</span>
   <span id="counter">1 / 16</span>
@@ -312,6 +314,8 @@
 <div class="nav">
   <button onclick="go(-1)">‹</button>
   <button onclick="go(1)">›</button>
+</div>
+</div>
 </div>
 
 <script>
@@ -326,7 +330,24 @@
     if(e.key==='Home')show(0);
     if(e.key==='End')show(slides.length-1);
   });
+  const deck=document.getElementById('deck');
+  function fit(){
+    const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    const x=(window.innerWidth-1280*s)/2, y=(window.innerHeight-720*s)/2;
+    deck.style.transform='translate('+x+'px,'+y+'px) scale('+s+')';
+  }
+  window.addEventListener('resize',fit);
+  window.addEventListener('orientationchange',fit);
+  fit();
   show(0);
+
+  // swipe na dotykových zariadeniach
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>60) go(dx<0?1:-1);
+  },{passive:true});
 </script>
 </body>
 </html>
