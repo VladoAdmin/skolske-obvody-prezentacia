@@ -108,6 +108,8 @@
     <div class="kicker">Náš prístup</div>
     <h2>Každú podmienku §44 preložíme na merateľný test s dôkazom</h2>
     <ul>
+      <li><b>Vstupom je VZN zriaďovateľa</b> (kraj alebo mesto) — z neho čítame, ako určil školské
+      obvody. VZN priebežne sledujeme a pri každej zmene plnenie prehodnotíme.</li>
       <li><b>Tvrdé podmienky</b> (kapacita, vzdialenosť, doprava, jazyk) overíme výpočtom nad
       geografickými a registrovými dátami.</li>
       <li><b>Mäkké podmienky</b> (segregácia, inklúzia) vyhodnotíme indexom + odôvodnením AI
@@ -123,15 +125,18 @@
     <div class="kicker">Ako to funguje</div>
     <h2>Od dát k dôkazu</h2>
     <div class="flow">
-      <div class="step"><b>1 · Dáta</b><span>Registre škôl, adresy, OpenStreetMap, cestovné
+      <div class="step"><b>1 · VZN zriaďovateľov</b><span>scrape VZN krajov a miest — ako určili
+      obvody</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>2 · Dáta</b><span>Registre škôl, adresy, OpenStreetMap, cestovné
       poriadky, Atlas komunít</span></div>
       <div class="arrow">→</div>
-      <div class="step"><b>2 · Geo-engine</b><span>Mapa obvodov, výpočet reálnych trás
+      <div class="step"><b>3 · Geo-engine</b><span>Mapa obvodov, výpočet reálnych trás
       a vzdialeností</span></div>
       <div class="arrow">→</div>
-      <div class="step"><b>3 · Pravidlá + AI</b><span>Test každej podmienky §44 oproti prahu</span></div>
+      <div class="step"><b>4 · Pravidlá + AI</b><span>Test každej podmienky §44 oproti prahu</span></div>
       <div class="arrow">→</div>
-      <div class="step"><b>4 · Report</b><span>Semafor, mapa, rebríček porušení pre RÚŠS</span></div>
+      <div class="step"><b>5 · Report</b><span>Semafor, mapa, rebríček porušení pre RÚŠS</span></div>
     </div>
   </section>
 
