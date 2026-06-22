@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Správa o ukončení etapy, Fáza 1: Analýza vstupných údajov (§44 verejné školské obvody)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 22mm 20mm 22mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 { font-size: 18pt; margin-bottom: 6pt; font-weight: bold; }
+  h2 { font-size: 13pt; margin-top: 22pt; margin-bottom: 8pt; border-bottom: 1.5px solid #2c4a7c; padding-bottom: 3pt; color: #2c4a7c; font-weight: bold; }
+  h3 { font-size: 11pt; margin-top: 14pt; margin-bottom: 5pt; font-weight: bold; color: #333; }
+  p { margin-bottom: 7pt; }
+  ul, ol { margin: 5pt 0 8pt 18pt; }
+  li { margin-bottom: 3pt; }
+  table { width: 100%; border-collapse: collapse; margin: 10pt 0; font-size: 9.5pt; }
+  th { background-color: #2c4a7c; color: #fff; padding: 5pt 7pt; text-align: left; font-weight: bold; }
+  td { padding: 4pt 7pt; border: 0.5px solid #bbb; vertical-align: top; }
+  tr:nth-child(even) td { background-color: #f4f6fa; }
+  .cover-page {
+    min-height: 260mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #2c4a7c;
+    padding: 28mm 22mm;
+    margin-bottom: 10mm;
+    page-break-after: always;
+  }
+  .cover-label { font-size: 11pt; color: #555; margin-bottom: 8pt; text-transform: uppercase; letter-spacing: 1px; }
+  .cover-title { font-size: 18pt; font-weight: bold; color: #1a1a1a; margin-bottom: 10pt; line-height: 1.3; }
+  .cover-subtitle { font-size: 12pt; color: #2c4a7c; margin-bottom: 24pt; }
+  .cover-meta { font-size: 10pt; color: #444; border-top: 1px solid #ccc; padding-top: 10pt; margin-top: 14pt; }
+  .cover-meta td { border: none; background: none; padding: 3pt 12pt 3pt 0; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-top: 0; }
+  .toc ol { margin-left: 0; list-style: none; }
+  .toc li { padding: 3pt 0; border-bottom: 0.5px dotted #bbb; }
+  .toc li a { text-decoration: none; color: #2c4a7c; }
+  .section { margin-bottom: 14pt; }
+  .notice { background: #f0f4fb; border-left: 3px solid #2c4a7c; padding: 7pt 10pt; font-size: 9.5pt; margin: 8pt 0; }
+  .gap-row td { border-left: 3px solid #cc2222; }
+  .vieme-row td { border-left: 3px solid #d97706; }
+  .mame-row td { border-left: 3px solid #16a34a; }
+  .badge-mame { display: inline-block; background: #16a34a; color: #fff; font-size: 8pt; padding: 1pt 5pt; border-radius: 3pt; }
+  .badge-vieme { display: inline-block; background: #d97706; color: #fff; font-size: 8pt; padding: 1pt 5pt; border-radius: 3pt; }
+  .badge-gap { display: inline-block; background: #cc2222; color: #fff; font-size: 8pt; padding: 1pt 5pt; border-radius: 3pt; }
+  .quality-high { color: #16a34a; font-weight: bold; }
+  .quality-med { color: #d97706; font-weight: bold; }
+  .quality-low { color: #cc2222; font-weight: bold; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover-page { page-break-after: always; }
+    .toc { page-break-after: always; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TITULNÁ STRANA -->
+<div class="cover-page">
+  <div class="cover-label">PRINCE2: Správa o ukončení etapy, Fáza 1</div>
+  <div class="cover-title">Fáza 1: Analýza vstupných údajov<br><span style="font-size:14pt; font-weight: normal;">Identifikácia dátových zdrojov pre nástroj na kontrolu §44 (verejné školské obvody)</span></div>
+  <div class="cover-subtitle">Správa o ukončení etapy, Fáza 1 / Analýza vstupných údajov</div>
+  <table class="cover-meta">
+    <tr><td><strong>Verzia:</strong></td><td>1.0</td></tr>
+    <tr><td><strong>Dátum:</strong></td><td>22. júna 2026</td></tr>
+    <tr><td><strong>Stav:</strong></td><td>Finálny, predkladaný Projektovému výboru</td></tr>
+    <tr><td><strong>Autor správy:</strong></td><td>Projektový manažér / analytik projektu</td></tr>
+    <tr><td><strong>Pilot kraj:</strong></td><td>Prešovský samosprávny kraj (PSK)</td></tr>
+    <tr><td><strong>Nasledujúci krok:</strong></td><td>Schválenie prechodu do Fázy 2 (Dostupnosť a kvalita dát)</td></tr>
+  </table>
+</div>
+
+<!-- OBSAH -->
+<div class="toc section">
+  <h2>Obsah</h2>
+  <ol>
+    <li><a href="#s1">1. Účel a zhrnutie manažéra etapy</a></li>
+    <li><a href="#s2">2. Cieľ tejto fázy</a></li>
+    <li><a href="#s3">3. Metodika vyhľadávania údajov</a></li>
+    <li><a href="#s4">4. Mapovanie na podmienky §44</a></li>
+    <li><a href="#s5">5. Inventár identifikovaných údajov</a></li>
+    <li><a href="#s6">6. Hodnotenie zdrojov podľa typu</a></li>
+    <li><a href="#s7">7. Dátové medzery (GAP)</a></li>
+    <li><a href="#s8">8. Stav produktov etapy</a></li>
+    <li><a href="#s9">9. Získané poučenia</a></li>
+    <li><a href="#s10">10. Odporúčania a ďalšie kroky</a></li>
+  </ol>
+</div>
+
+<!-- SEKCIA 1 -->
+<div class="section" id="s1">
+  <h2>1. Účel a zhrnutie manažéra etapy</h2>
+  <p>Táto správa dokumentuje výsledky analytickej etapy, ktorej cieľom bolo identifikovať všetky dátové zdroje potrebné na overenie súladu školských obvodov s §44 zákona č. 321/2025 Z. z., a to pre podmienky použiteľné v pilotnej fáze (Prešovský kraj).</p>
+  <p>Kľúčový nález: pre podmienky Š1, Š2, Š3 a P-e existujú verejne dostupné a použiteľné dáta; podmienky P-b a P-c sú čiastočne pokryté, ale závisia od doplnenia zdrojov. Kľúčové dáta pre P-a (kapacity škôl), P-b (počty detí na adresu) a P-f (ŠVVP) sú GAP alebo čiastočné a vyžadujú formálne žiadosti. Geoportál PSK poskytuje viacero relevantných WFS vrstiev identifikovaných v DATA_INVENTORY_PSK; vybrané exporty CSV/JSON/SHP boli overené naživo.</p>
+  <p>Tri skupiny dát zostávajú problematické. Počty detí na adresu sú chránené GDPR a bez formálnej dohody s MV SR alebo mestom sú nedostupné. Kapacity škôl nie sú verejne publikované. Plný GTFS grafikon verejnej dopravy nie je dostupný (polohy zastávok áno, ale plný grafikon s časmi spojov nie). Tieto medzery sú riešiteľné, a to buď náhradnými zdrojmi, alebo formálnymi žiadosťami, ktoré odporúčame podať pred zahájením Fázy 2.</p>
+  <p>Etapa F1 je uzatvorená. Dodané boli inventár dát (DATA_INVENTORY_PSK.csv) a táto správa. Žiadosti o prístup k dátam (REGOB, EDUZBER) a potvrdenie vzorky obcí zákazníkom sú follow-on odporúčania pre Fázu 2, nie nesplnené blokujúce výstupy tejto etapy. Odporúčam schváliť prechod do Fázy 2 (Dostupnosť a kvalita dát).</p>
+</div>
+
+<!-- SEKCIA 2 -->
+<div class="section" id="s2">
+  <h2>2. Cieľ tejto fázy</h2>
+  <p>Fáza mala jeden hlavný cieľ: zmeniť dátový katalóg z "čo by sme chceli mať" na "čo reálne máme alebo vieme získať". Konkrétne to znamenalo:</p>
+  <ul>
+    <li>Pre každú podmienku §44 identifikovať buď použiteľný dátový zdroj, alebo dátovú medzeru s navrhnutým postupom získania.</li>
+    <li>Overiť dostupnosť každého zdroja naživo (nie iba na základe zoznamu URL).</li>
+    <li>Ohodnotiť kvalitu a aktuálnosť každého zdroja číselne (skóre 1–10).</li>
+    <li>Explicitne pomennovať, čo chýba a kde to treba získať.</li>
+  </ul>
+  <p>Fáza nezahŕňa technickú implementáciu konektorov ani načítanie dát do databázy; to patrí do Fázy 2 (Dostupnosť a kvalita dát). Výstupom tejto fázy je informačná základňa pre ďalší postup, nie spustiteľný kód.</p>
+</div>
+
+<!-- SEKCIA 3 -->
+<div class="section" id="s3">
+  <h2>3. Metodika vyhľadávania údajov</h2>
+  <p>Analýza postupovala v štyroch krokoch, pričom každý zdroj bol overovaný oddelene.</p>
+  <p>Prvý krok bol prehľad právnych požiadaviek. Pre každú z podmienok §44 ods. 8 (a–f) a pre štruktúrne požiadavky (ods. 1, 7) sme definovali, aký typ dát je nevyhnutný na merateľné vyhodnotenie. Toto vymedzenie bolo pred samotným hľadaním zdrojov.</p>
+  <p>Druhý krok bol vyhľadávanie zdrojov. Prešli sme tieto kanály: Geoportál PSK (geopresovregion.sk) s WFS rozhraním, slov-lex a data.gov.sk pre otvorené dáta, weby zriaďovateľov (mestá a obce PSK), databázy CVTI SR, NAP (Národný prístupový bod pre GTFS), ÚSVRK pre Atlas MRK, a webové stránky dopravcov v PSK.</p>
+  <p>Tretí krok bol overovanie naživo. Naživo sme overili verejné zdroje označené ako MÁME: otvorili sme URL, vyskúšali WFS volanie, prípadne stiahli vzorku dát. Zdroje označené ako VIEME ZÍSKAŤ, ČIASTOČNE alebo GAP neboli plne overené z hľadiska prístupu k dátam a vyžadujú žiadosť, potvrdenie poskytovateľa alebo náhradný postup.</p>
+  <p>Štvrtý krok bolo hodnotenie kvality. Každý zdroj dostal číselné skóre 1–10 na základe troch kritérií: aktuálnosť (vek dát), úplnosť (pokrytie územia, prítomnosť kľúčových atribútov) a spoľahlivosť (typ zdroja a spôsob aktualizácie). Skóre nie je definitívne a môže sa zmeniť po hlbšom skúmaní počas Fázy 2.</p>
+</div>
+
+<!-- SEKCIA 4 -->
+<div class="section" id="s4">
+  <h2>4. Mapovanie na podmienky §44</h2>
+  <p>Tabuľka zobrazuje, ktoré identifikované zdroje pokrývajú jednotlivé podmienky §44 ods. 8 a štruktúrne požiadavky §44 ods. 1 a 7.</p>
+  <table>
+    <tr><th>Kód</th><th>Podmienka §44</th><th>Charakter</th><th>Hlavné dátové zdroje</th><th>Stav pokrytia</th></tr>
+    <tr>
+      <td>Š1</td>
+      <td>Pokrytie: každá adresa v obci patrí práve do jedného obvodu (technická kontrola odvodená z §44 ods. 1)</td>
+      <td>Tvrdá (štrukturálna, ods. 1)</td>
+      <td>vzn_obvody_presov, hranice_obvodov, adresne_body, hranice_obci</td>
+      <td><span class="badge-vieme">VIEME ODVODIŤ</span></td>
+    </tr>
+    <tr>
+      <td>Š2</td>
+      <td>Neprekrývanie: obvody pre rovnaký druh a jazyk školy sa nesmú prekrývať (technická kontrola odvodená z §44 ods. 1 a 7)</td>
+      <td>Tvrdá (štrukturálna, ods. 1 a 7)</td>
+      <td>vzn_obvody_presov, hranice_obvodov, skoly_wfs</td>
+      <td><span class="badge-vieme">VIEME ODVODIŤ</span></td>
+    </tr>
+    <tr>
+      <td>Š3</td>
+      <td>Jedna škola na obvod (technická kontrola odvodená z §44 ods. 1)</td>
+      <td>Tvrdá (štrukturálna, ods. 1)</td>
+      <td>vzn_obvody_presov, skoly_wfs, register_skol_sr</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr>
+      <td>P-a</td>
+      <td>Kapacita budov školy</td>
+      <td>Tvrdá</td>
+      <td>ziaci_skola (proxy), gap_kapacita (GAP), skoly_wfs</td>
+      <td><span class="badge-gap">ČIASTOČNE / GAP</span></td>
+    </tr>
+    <tr>
+      <td>P-b</td>
+      <td>Vzdialenosť pobytu dieťaťa od školy</td>
+      <td>Tvrdá / geo</td>
+      <td>adresne_body, skoly_wfs, osm_siet, gap_deti_adresa (GAP)</td>
+      <td><span class="badge-vieme">VIEME ZÍSKAŤ + GAP</span></td>
+    </tr>
+    <tr>
+      <td>P-c</td>
+      <td>Dopravná infraštruktúra obce</td>
+      <td>Tvrdá / geo</td>
+      <td>osm_siet, cesty_psk, zastavky_pad, zeleznice, mhd_presov, gap_gtfs_pad</td>
+      <td><span class="badge-vieme">VIEME ZÍSKAŤ + GAP</span></td>
+    </tr>
+    <tr>
+      <td>P-d</td>
+      <td>Právo na vyučovanie v jazyku národnostnej menšiny</td>
+      <td>Stredná</td>
+      <td>skoly_wfs (vyuc_jazyk), register_skol_sr</td>
+      <td><span class="badge-mame">MÁME (mimo MVP / plánované vo Fáze 2)</span></td>
+    </tr>
+    <tr>
+      <td>P-e</td>
+      <td>Dodržiavanie zákazu segregácie</td>
+      <td>Mäkká</td>
+      <td>atlas_mrk, budovy_mrk, skoly_wfs (pocet_ziakov)</td>
+      <td><span class="badge-mame">MÁME (heuristika)</span></td>
+    </tr>
+    <tr>
+      <td>P-f</td>
+      <td>Princíp inkluzívneho vzdelávania (ŠVVP)</td>
+      <td>Mäkká</td>
+      <td>gap_svvp (GAP)</td>
+      <td><span class="badge-gap">GAP (mimo MVP / plánované vo Fáze 2)</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- SEKCIA 5 -->
+<div class="section" id="s5">
+  <h2>5. Inventár identifikovaných údajov</h2>
+
+  <div class="notice">
+    Kľúčový nález: Geoportál PSK (geopresovregion.sk) poskytuje cez WFS rozhranie verejne dostupné geodáta vrátane školských zariadení (CVTI), hraníc obcí (ZBGIS/ÚGKK), cestnej siete, Atlas MRK, budov v MRK obciach a ďalších vrstiev. Vybrané exporty do CSV/JSON/SHP boli overené naživo. Ide o širokú dátovú základňu, ktorá znižuje pôvodne predpokladané riziko nedostupnosti dát.
+  </div>
+
+  <table>
+    <tr>
+      <th>Údaj</th>
+      <th>Zdroj</th>
+      <th>Typ zdroja</th>
+      <th>Kvalita (1–10)</th>
+      <th>Vek / dátum</th>
+      <th>Status</th>
+    </tr>
+    <tr class="mame-row">
+      <td>VZN o školských obvodoch ZŠ (Prešov), VZN č. 1/2023</td>
+      <td>Mesto Prešov / Školský úrad</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">9</td>
+      <td>Aktualizovaný 17.9.2025</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Školské zariadenia: GPS, adresa, jazyk, počet žiakov, zriaďovateľ (45 stĺpcov)</td>
+      <td>Geoportál PSK, CVTI Mapa regionálneho školstva (WFS)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">9</td>
+      <td>Október 2024</td>
+      <td><span class="badge-mame">MÁME (overený export)</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Zoznam škôl mesta Prešov: adresy, kontakty, riaditelia (12 ZŠ + 1 ZŠsMŠ + MŠ)</td>
+      <td>Mesto Prešov (web)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">8</td>
+      <td>Priebežne</td>
+      <td><span class="badge-mame">MÁME (scrapnuté)</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Register škôl a školských zariadení SR (celoštátny, k 15.9.2025)</td>
+      <td>CVTI SR / data.slovensko.sk</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">9</td>
+      <td>15.9.2025</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Administratívne hranice obcí / okresov / kraja</td>
+      <td>Geoportál PSK (podklad ZBGIS / ÚGKK)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">9</td>
+      <td>2024+</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="vieme-row">
+      <td>Hranice školských obvodov (geometria, odvodené z VZN)</td>
+      <td>Parsovaním VZN + Register adries</td>
+      <td>Odvodené z referenčného</td>
+      <td class="quality-med">6</td>
+      <td>2025</td>
+      <td><span class="badge-vieme">VIEME ODVODIŤ</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Cestná a pešia sieť (routing, geometria)</td>
+      <td>OpenStreetMap (Geofabrik) + Geoportál PSK</td>
+      <td>Komunitný + referenčný</td>
+      <td class="quality-high">8</td>
+      <td>Priebežne</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Cesty I/II/III triedy + kategória + správca</td>
+      <td>Geoportál PSK (WFS)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">6</td>
+      <td>2024+</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Obývané budovy v MRK obciach, terénny zber</td>
+      <td>Geoportál PSK (WFS: rsm_*_budovy: Ostrovany, Varhaňovce, Čičava, Dlhé Stráže, Krivany, Varadka)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">7</td>
+      <td>2022</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="vieme-row">
+      <td>Adresné body (celé územie SR)</td>
+      <td>Register adries MV SR / data.gov.sk</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">9</td>
+      <td>Priebežne</td>
+      <td><span class="badge-vieme">VIEME ZÍSKAŤ</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Počet detí 0–14 podľa obce</td>
+      <td>Geoportál PSK (ŠÚSR, WFS)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">7</td>
+      <td>Rad 1996–2020+</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Počty žiakov per škola</td>
+      <td>Geoportál PSK (mapa_regionalneho_skolstva) + CVTI EDUZBER</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">7</td>
+      <td>2024</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Atlas rómskych komunít (2019 + 2013 + 2004)</td>
+      <td>Geoportál PSK / ÚSVRK (WFS)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">7</td>
+      <td>2019</td>
+      <td><span class="badge-mame">MÁME (export)</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Zastávky prímestskej autobusovej dopravy (PAD), polohy</td>
+      <td>Geoportál PSK (WFS)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">7</td>
+      <td>2024</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Železničná sieť + zastávky PSK</td>
+      <td>Geoportál PSK + ZSSK / data.gov.sk (GTFS vlakov)</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">8</td>
+      <td>2024/2026</td>
+      <td><span class="badge-mame">MÁME</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>MHD Prešov: plný GTFS grafikon (časy spojov, linky)</td>
+      <td>DPMP (na vyžiadanie)</td>
+      <td>Referenčný oficiálny (dopravca)</td>
+      <td class="quality-low">5</td>
+      <td>2025</td>
+      <td><span class="badge-gap">GAP / VIEME ZÍSKAŤ (request DPMP); polohy zastávok sú dostupné, plný grafikon nie</span></td>
+    </tr>
+    <tr class="mame-row">
+      <td>Stredné školy PSK</td>
+      <td>Geoportál PSK + KamPO.sk</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-high">8</td>
+      <td>2024+</td>
+      <td><span class="badge-mame">MÁME (mimo rozsahu kontroly §44; §44 sa vzťahuje len na MŠ a ZŠ)</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>Počet detí na adresu / po obvodoch v meste</td>
+      <td>REGOB / evidencia obyvateľstva mesta Prešov</td>
+      <td>Referenčný oficiálny (chránený)</td>
+      <td class="quality-high">10</td>
+      <td>Live</td>
+      <td><span class="badge-gap">GAP (GDPR); relevantné pre P-a (váženie kapacity) a P-b (počet dotknutých detí). Š1 si vyžaduje iba adresné body a geometriu obvodov</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>Kapacita školy (najvyšší povolený počet žiakov)</td>
+      <td>EDUZBER / zriaďovacia listina / CVTI</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">6</td>
+      <td>Ročne</td>
+      <td><span class="badge-gap">GAP, na vyžiadanie</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>Počty detí so ŠVVP per škola</td>
+      <td>CVTI EDUZBER / RÚŠS</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-med">6</td>
+      <td>Ročne</td>
+      <td><span class="badge-gap">GAP, citlivé dáta (P-f, mimo MVP / Fáza 2)</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>Zimná údržba / reálna zjazdnosť ciest</td>
+      <td>SÚC PSK</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-low">4</td>
+      <td>Nejasné</td>
+      <td><span class="badge-gap">GAP, nad rámec kategórie cesty</span></td>
+    </tr>
+    <tr class="gap-row">
+      <td>Plný GTFS grafikon PAD / IDS Východ</td>
+      <td>IDS Východ / SAD Prešov / NAP</td>
+      <td>Referenčný oficiálny</td>
+      <td class="quality-low">5</td>
+      <td>2025</td>
+      <td><span class="badge-gap">GAP / VIEME ZÍSKAŤ čiastočne</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- SEKCIA 6 -->
+<div class="section" id="s6">
+  <h2>6. Hodnotenie zdrojov podľa typu</h2>
+
+  <h3>6.1 Referenčné oficiálne zdroje</h3>
+  <p>Tvoria jadro dátovej základne. Patria sem predovšetkým:</p>
+  <ul>
+    <li>Geoportál PSK (geopresovregion.sk): WFS rozhranie s viacerými relevantnými vrstvami identifikovanými v DATA_INVENTORY_PSK; vybrané exporty boli overené naživo. Toto je primárny zdroj pre geografické dáta projektu.</li>
+    <li>VZN č. 1/2023 mesta Prešov: právne záväzná definícia školských obvodov, aktualizovaná k 17.9.2025.</li>
+    <li>Register škôl CVTI SR (data.slovensko.sk): celoštátny register, k 15.9.2025.</li>
+    <li>Register adries MV SR (data.gov.sk), priebežne aktualizovaný, potrebný pre geokódovanie VZN ulíc.</li>
+    <li>Atlas rómskych komunít (ÚSVRK) z roku 2019, dostupný cez Geoportál PSK; dáta sú 7 rokov staré, čo je slabina, ale Atlas je jediný dostupný systematický zdroj pre podmienku P-e.</li>
+  </ul>
+  <p>Kvalita týchto zdrojov je celkovo dobrá (skóre 7–9), s výnimkou dát o zimnej údržbe (4) a GTFS grafikonu PAD (5), ktoré sú buď nedostupné alebo čiastočné.</p>
+
+  <h3>6.2 Agregátory a neoficiálne zdroje</h3>
+  <p>Tieto zdroje môžu slúžiť ako záložné alebo na krížovú kontrolu, ale nie sú primárnymi zdrojmi pre overovanie §44:</p>
+  <ul>
+    <li>imhd.sk: cestovné poriadky MHD, pokrýva Prešov; nie je primárnym zdrojom (pozri mhd_presov). Ako záložný zdroj ho možno použiť len po právnom posúdení licencie a podmienok použitia danej stránky. Prednostne odporúčame požiadať DPMP o GTFS alebo o inú formu poskytovania dát.</li>
+    <li>KamPO.sk: databáza stredných škôl; nie je relevantná pre §44 školské obvody (tie sa týkajú len MŠ/ZŠ), ale slúži na kontextové overenie.</li>
+  </ul>
+  <p>Komunitné dáta (OpenStreetMap) majú v projekte osobitné postavenie: ich geometria (cestná sieť) je vynikajúca a je základom routingového enginu. Atribúty povrchov a chodníkov sú však neúplné, čo si vyžaduje kombináciu s geoportál PSK vrstvami ciest.</p>
+</div>
+
+<!-- SEKCIA 7 -->
+<div class="section" id="s7">
+  <h2>7. Dátové medzery (GAP)</h2>
+  <p>Nasledujúce údaje sa nepodarilo získať v tejto fáze. Pre každú medzeru je uvedené, komu treba adresovať žiadosť a čo je záložné riešenie.</p>
+
+  <table>
+    <tr>
+      <th>Chýbajúci údaj</th>
+      <th>Podmienka §44</th>
+      <th>Dôvod nedostupnosti</th>
+      <th>Komu žiadať</th>
+      <th>Záložné riešenie</th>
+    </tr>
+    <tr class="gap-row">
+      <td>Počet detí na adresu / per obvod v meste</td>
+      <td>P-a, P-b (pozn.: Š1 si vyžaduje iba adresné body a geometriu, nie počty detí)</td>
+      <td>Osobné údaje (GDPR); REGOB prístup vyžaduje formálnu dohodu</td>
+      <td>MV SR (Register obyvateľov) alebo mesto Prešov (evidencia obyvateľstva): formálna žiadosť s právnym základom</td>
+      <td>Obecný agregát (deti_0_14_obce), menej presné, ale použiteľné pre P-a na úrovni obce; pre P-b: bez REGOB/evidencie obyvateľstva možno z adresných bodov vyhodnotiť dostupnosť obývaných lokalít, nie presný počet dotknutých detí. Výstup P-b musí byť označený ako nevážený počtom detí.</td>
+    </tr>
+    <tr class="gap-row">
+      <td>Kapacita školy (max. povolený počet žiakov)</td>
+      <td>P-a</td>
+      <td>Nie je systematicky zverejňovaná; závisí od zriaďovacej listiny</td>
+      <td>CVTI SR (EDUZBER), prípadne jednotlivé mestá ako zriaďovatelia</td>
+      <td>Proxy = aktuálny počet žiakov (pocet_ziakov z WFS) možno použiť iba ako dočasný indikátor veľkosti školy, nie ako dôkaz splnenia P-a. Výsledok P-a ostáva neúplný, kým nebude získaná skutočná kapacita školy z EDUZBER/CVTI alebo od zriaďovateľa.</td>
+    </tr>
+    <tr class="gap-row">
+      <td>Plný GTFS grafikon MHD Prešov (DPMP) a PAD (IDS Východ): časy spojov, linky, zastavovacie poriadky</td>
+      <td>P-c</td>
+      <td>Polohy zastávok sú dostupné (MÁME), ale plný strojovo spracovateľný grafikon s časmi spojov nie je verejne dostupný. Časť GTFS vlakov je dostupná celoštátne.</td>
+      <td>IDS Východ, SAD Prešov, DPMP (samostatné žiadosti o GTFS alebo dátovú dohodu); imhd.sk len po právnom posúdení licencie</td>
+      <td>Polohy zastávok PAD a MHD sú dostupné (zastavky_pad, Geoportál PSK; mhd_presov na vyžiadanie), možno ich však použiť iba ako dočasný proxy indikátor blízkosti verejnej dopravy. Výsledok P-c ostáva neúplný bez časov spojov a prestupových väzieb. Výstup P-c bez GTFS grafikonu musí byť explicitne označený ako neúplný.</td>
+    </tr>
+    <tr class="gap-row">
+      <td>Zimná údržba / reálna zjazdnosť ciest</td>
+      <td>P-c</td>
+      <td>Nie je potvrdené, či SÚC PSK disponuje dátami o zimnej údržbe v strojovo spracovateľnom formáte; vyžaduje sa žiadosť na SÚC PSK. Kategória cesty (I/II/III) je k dispozícii, ale hovorí o kategórii, nie o zimnej zjazdnosti</td>
+      <td>SÚC PSK: formálna alebo pracovná žiadosť na overenie existencie a formátu digitálnych dát</td>
+      <td>Kategória cesty môže byť použitá iba ako slabý indikátor istoty trasy, nie ako náhrada dát o zimnej údržbe; report musí uviesť, že reálna zjazdnosť nebola overená</td>
+    </tr>
+    <tr class="gap-row">
+      <td>Počty detí so ŠVVP per škola</td>
+      <td>P-f (inklúzia)</td>
+      <td>Citlivé osobné údaje; EDUZBER ich vedie, ale nie sú verejné</td>
+      <td>CVTI SR / RÚŠS PSK: formálna žiadosť (relevantné až vo Fáze 2, keď sa P-f bude implementovať)</td>
+      <td>P-f nie je v MVP rozsahu; záložné riešenie sa bude riešiť až v príprave Fázy 2</td>
+    </tr>
+  </table>
+
+  <div class="notice">
+    Follow-on odporúčanie pre Fázu 2: podať žiadosti o prístup k REGOB (počty detí na adresu) a EDUZBER (kapacity škôl, ŠVVP) pred alebo hneď na začiatku F2, aby dohody boli hotové pred F3 (model vyhodnotenia). Kontaktovať IDS Východ / DPMP o GTFS grafikon PAD/MHD; polohy zastávok bez grafikonu slúžia len ako dočasný proxy a výsledok P-c bez GTFS ostáva neúplný.
+  </div>
+</div>
+
+<!-- SEKCIA 8 -->
+<div class="section" id="s8">
+  <h2>8. Stav produktov etapy</h2>
+
+  <table>
+    <tr><th>Produkt</th><th>Plánovaný stav</th><th>Skutočný stav</th><th>Poznámka</th></tr>
+    <tr>
+      <td>Naplnený dátový inventár (DATA_INVENTORY_PSK.csv)</td>
+      <td>Dodaný</td>
+      <td>Dodaný</td>
+      <td>22 dátových položiek, vrátane 5 GAP položiek s plánom získania</td>
+    </tr>
+    <tr>
+      <td>Správa o ukončení etapy (tento dokument)</td>
+      <td>Dodaná</td>
+      <td>Dodaná</td>
+      <td>Dokument FAZA1 (HTML zdroj + PDF: FAZA1.html, FAZA1.pdf)</td>
+    </tr>
+  </table>
+  <div class="notice">
+    Nasledujúce položky nie sú výstupmi Fázy 1, ale follow-on odporúčaniami pre Fázu 2: (a) zákazník potvrdí výber 5-10 obcí PSK pre pilot; (b) podanie žiadostí o dátové dohody (REGOB, EDUZBER); (c) zákazník potvrdí alebo upraví navrhnuté prahy dostupnosti z PRD.md. Tieto kroky sa odporúčajú vykonať pred alebo na začiatku F2.
+  </div>
+</div>
+
+<!-- SEKCIA 9 -->
+<div class="section" id="s9">
+  <h2>9. Získané poučenia</h2>
+
+  <h3>9.1 Čo fungovalo dobre</h3>
+  <ul>
+    <li>Geoportál PSK je bohatší než sme predpokladali. WFS rozhranie s viacerými relevantnými vrstvami a overené vybrané exporty znížili riziko nedostupnosti dát. Je to argument pre výber Prešovského kraja ako pilotu.</li>
+    <li>VZN mesta Prešov č. 1/2023 je reálne dostupné a aktuálne (aktualizácia september 2025). To je pozitívne prekvapenie: mnohé VZN obcí sú zastarané alebo ťažko dohľadateľné.</li>
+    <li>Overovanie zdrojov naživo (nie iba zaznačenie URL) odhalilo viaceré problémy hneď v analytickej fáze, nie až pri implementácii.</li>
+  </ul>
+
+  <h3>9.2 Čo treba zlepšiť</h3>
+  <ul>
+    <li>GDPR obmedzenie pre počty detí na adresu je výrazne väčšou bariérou, ako sme plánovali. Žiadosti o prístup musia byť podané výrazne skôr, ideálne súbežne s analýzou, nie po nej.</li>
+    <li>Hranice školských obvodov sú odvodzované z textu VZN, nie z hotového geodatasetu. Kvalita tejto odvodeniny (skóre 6) závisí od presnosti geokódovania ulíc; toto treba v nasledujúcej fáze (Fáza 2) dôkladne overiť na konkrétnej vzorke, kým sa overovanie rozšíri na viac obcí.</li>
+    <li>OSM atribúty povrchu ciest sú pri hodnotení podmienky P-c (doprava) slabým článkom. Kombinácia s Geoportál PSK vrstvami ciest je potrebná, ale pridáva komplexitu do pipeline.</li>
+  </ul>
+</div>
+
+<!-- SEKCIA 10 -->
+<div class="section" id="s10">
+  <h2>10. Odporúčania a ďalšie kroky</h2>
+
+  <h3>10.1 Odporúčané ďalšie kroky</h3>
+
+  <p><strong>Odporúčané follow-on kroky pre Fázu 2 (Dostupnosť a kvalita dát):</strong></p>
+  <ul>
+    <li>Zákazník schváli výber 5–10 obcí PSK pre pilotnú vzorku. Odporúčané kritériá výberu: aspoň 2 obce s dobre zdokumentovanými VZN, aspoň 1 obec s MRK komunitou, aspoň 1 mestská obec (Prešov, najbohatšia dátová základňa).</li>
+    <li>Zákazník potvrdí alebo upraví navrhnuté prahy dostupnosti z PRD.md (ZŠ 1. stupeň: do 2 km / 30 min pešo; vyšší stupeň: do 4 km).</li>
+    <li>Podať formálnu žiadosť o prístup k REGOB (MV SR) alebo k evidencii obyvateľstva mesta Prešov. Časový rámec schválenia sa nedá garantovať, preto podanie odporúčame čo najskôr.</li>
+    <li>Podať žiadosť o EDUZBER export (kapacity škôl) na CVTI SR.</li>
+    <li>Kontaktovať DPMP a IDS Východ ohľadom GTFS grafikonu MHD/PAD; záložné riešenie (polohy zastávok bez časov spojov) je len dočasný proxy a výsledok P-c bez grafikonu ostáva neúplný.</li>
+  </ul>
+
+  <p><strong>V rámci Fázy 2 (Dostupnosť a kvalita dát) a Fázy 3 (Model vyhodnotenia):</strong></p>
+  <ul>
+    <li>Routing voliť na báze OSRM alebo Valhalla nad OSM Slovensko; pre offline overovanie dostupnosti bez GTFS grafikonu použiť polohy zastávok PAD z Geoportálu PSK s explicitným flagom "P-c neúplné".</li>
+    <li>Geokódovanie ulíc z VZN Prešov overovať ručne na vzorke pred automatickým rozšírením: presnosť geometrie obvodov je kritická pre všetky ďalšie výpočty.</li>
+    <li>Pre podmienku P-c kombinácia OSM (geometria) + Geoportál PSK cesty (kategória cesty len ako slabý indikátor istoty trasy, nie ako náhrada dát o zjazdnosti).</li>
+  </ul>
+
+  <p><strong>Pre Fázu 3 (Model vyhodnotenia § 44, mäkká podmienka P-e a neskôr P-f):</strong></p>
+  <ul>
+    <li>Atlas MRK z roku 2019 je jediný systematický zdroj pre P-e. V každom výstupe explicitne uviesť vek dát. Odporučiť ÚSVRK aktualizáciu Atlasu ako vedľajší výstup pilotnej validácie.</li>
+    <li>Segregačné prahy odvodzovať od minedu "Štandardov dodržiavania zákazu segregácie", nie definovať vlastné bez konzultácie.</li>
+  </ul>
+
+  <h3>10.2 Záver</h3>
+  <p>Analytická fáza (F1) je ukončená a dodané výstupy (dátový inventár + táto správa) sú kompletné. Projekt je technicky realizovateľný a dátová základňa pre Prešovský kraj je dostatočná na zmysluplný pilot. Hlavné riziká (GDPR, kapacity škôl, plný GTFS grafikon) sú identifikované a riešiteľné. Odporúčam schváliť prechod do Fázy 2 (Dostupnosť a kvalita dát). Žiadosti o prístup k dátam (REGOB, EDUZBER), odsúhlasenie vzorky obcí a potvrdenie prahov dostupnosti zákazníkom sú odporúčané follow-on kroky pre Fázu 2, nie podmienky uzatvorenia tejto etapy.</p>
+</div>
+
+</body>
+</html>

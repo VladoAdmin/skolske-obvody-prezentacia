@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PID: Nástroj na priebežnú kontrolu §44 (verejné školské obvody)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 22mm 20mm 22mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 { font-size: 18pt; margin-bottom: 6pt; font-weight: bold; }
+  h2 { font-size: 13pt; margin-top: 22pt; margin-bottom: 8pt; border-bottom: 1.5px solid #2c4a7c; padding-bottom: 3pt; color: #2c4a7c; font-weight: bold; }
+  h3 { font-size: 11pt; margin-top: 14pt; margin-bottom: 5pt; font-weight: bold; color: #333; }
+  p { margin-bottom: 7pt; }
+  ul, ol { margin: 5pt 0 8pt 18pt; }
+  li { margin-bottom: 3pt; }
+  table { width: 100%; border-collapse: collapse; margin: 10pt 0; font-size: 9.5pt; }
+  th { background-color: #2c4a7c; color: #fff; padding: 5pt 7pt; text-align: left; font-weight: bold; }
+  td { padding: 4pt 7pt; border: 0.5px solid #bbb; vertical-align: top; }
+  tr:nth-child(even) td { background-color: #f4f6fa; }
+  .cover-page {
+    min-height: 260mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #2c4a7c;
+    padding: 28mm 22mm;
+    margin-bottom: 10mm;
+    page-break-after: always;
+  }
+  .cover-label { font-size: 11pt; color: #555; margin-bottom: 8pt; text-transform: uppercase; letter-spacing: 1px; }
+  .cover-title { font-size: 20pt; font-weight: bold; color: #1a1a1a; margin-bottom: 10pt; line-height: 1.3; }
+  .cover-subtitle { font-size: 13pt; color: #2c4a7c; margin-bottom: 24pt; }
+  .cover-meta { font-size: 10pt; color: #444; border-top: 1px solid #ccc; padding-top: 10pt; margin-top: 14pt; }
+  .cover-meta td { border: none; background: none; padding: 3pt 12pt 3pt 0; }
+  .toc { page-break-after: always; }
+  .toc h2 { margin-top: 0; }
+  .toc ol { margin-left: 0; list-style: none; }
+  .toc li { padding: 3pt 0; border-bottom: 0.5px dotted #bbb; }
+  .toc li a { text-decoration: none; color: #2c4a7c; }
+  .section { margin-bottom: 14pt; }
+  .notice { background: #f0f4fb; border-left: 3px solid #2c4a7c; padding: 7pt 10pt; font-size: 9.5pt; margin: 8pt 0; }
+  .risk-high td:first-child { border-left: 3px solid #cc2222; }
+  .risk-med td:first-child { border-left: 3px solid #d97706; }
+  .risk-low td:first-child { border-left: 3px solid #16a34a; }
+  .placeholder { color: #888; font-style: italic; }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover-page { page-break-after: always; }
+    .toc { page-break-after: always; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TITULNÁ STRANA -->
+<div class="cover-page">
+  <div class="cover-label">PRINCE2: Základný projektový dokument (PID)</div>
+  <div class="cover-title">Nástroj na priebežnú kontrolu §44 zákona č. 321/2025 Z. z.<br>(verejné školské obvody)</div>
+  <div class="cover-subtitle">Project Initiation Documentation</div>
+  <table class="cover-meta">
+    <tr><td><strong>Verzia:</strong></td><td>1.0</td></tr>
+    <tr><td><strong>Dátum:</strong></td><td>22. júna 2026</td></tr>
+    <tr><td><strong>Stav:</strong></td><td>Finálny draft, na schválenie Projektovým výborom</td></tr>
+    <tr><td><strong>Autor / dodávateľ:</strong></td><td class="placeholder">[doplniť: meno/organizácia dodávateľa]</td></tr>
+    <tr><td><strong>Odberateľ / sponzor:</strong></td><td class="placeholder">[doplniť: meno/organizácia sponzora]</td></tr>
+    <tr><td><strong>Projektový manažér:</strong></td><td class="placeholder">[doplniť]</td></tr>
+    <tr><td><strong>Klasifikácia:</strong></td><td>Interný dokument projektu</td></tr>
+  </table>
+</div>
+
+<!-- OBSAH -->
+<div class="toc section">
+  <h2>Obsah</h2>
+  <ol>
+    <li><a href="#s1">1. Účel dokumentu</a></li>
+    <li><a href="#s2">2. Definícia projektu</a></li>
+    <li><a href="#s3">3. Projektový prístup</a></li>
+    <li><a href="#s4">4. Biznis prípad</a></li>
+    <li><a href="#s5">5. Organizácia projektu</a></li>
+    <li><a href="#s6">6. Prístup k riadeniu kvality</a></li>
+    <li><a href="#s7">7. Prístup k riadeniu rizík</a></li>
+    <li><a href="#s8">8. Prístup ku komunikácii</a></li>
+    <li><a href="#s9">9. Projektový plán</a></li>
+    <li><a href="#s10">10. Projektové kontroly</a></li>
+    <li><a href="#s11">11. Prispôsobenie PRINCE2</a></li>
+  </ol>
+</div>
+
+<!-- SEKCIA 1 -->
+<div class="section" id="s1">
+  <h2>1. Účel dokumentu</h2>
+  <p>Po schválení Projektovým výborom bude tento dokument riadiacim baseline projektu. Definuje, čo projekt dodá, prečo je to potrebné, kto za čo zodpovedá, ako sa bude práca kontrolovať a aký je plán. Zmluvné záväzky medzi stranami sú predmetom samostatnej obchodnej dohody.</p>
+  <p>PID nie je pracovný manuál ani technická špecifikácia. Je to odpoveď na otázku: <em>vieme, do čoho ideme?</em> Po schválení Projektovým výborom sa stáva riadiacim baseline a každá ďalšia zmena tohto dokumentu vyžaduje formálnu žiadosť o zmenu.</p>
+  <div class="notice">Tento dokument je vo verzii 1.0 (finálny draft). Schvaľovateľný rozpočtový baseline a cieľové hodnoty prínosov budú doplnené pred formálnym schválením PID Projektovým výborom.</div>
+</div>
+
+<!-- SEKCIA 2 -->
+<div class="section" id="s2">
+  <h2>2. Definícia projektu</h2>
+
+  <h3>2.1 Východiská a kontext</h3>
+  <p>Zákon č. 321/2025 Z. z. o školskej správe, účinný od 1. januára 2026, zaväzuje obce určiť verejné školské obvody. Podľa §44 ods. 8 musia byť pri tvorbe obvodov vo vzájomnej súvislosti a s primeraným vyvážením zohľadnené podmienky v šiestich oblastiach: kapacita školy, vzdialenosť dochádzky, dopravná infraštruktúra, právo na vyučovanie v jazyku menšiny, zákaz segregácie a princíp inklúzie.</p>
+  <p>Zákon zavádza kontrolný mechanizmus: podľa §44 ods. 10 môže RÚŠS overiť súlad aj bez návrhu a pri zistení nesúladu oznámi túto skutočnosť ministerstvu školstva na účely vykonania záznamu v podregistri a zároveň vyzve obec na odstránenie nedostatkov; podľa ods. 11 má obec na nápravu 90 dní. Tento kontrolný mechanizmus naráža na zásadnú praktickú prekážku: zákon neurčuje merateľné prahy pre "primerané vyváženie". RÚŠS nemá nástroj, ktorý by mu povedal, či je vzdialenosť 3 km pre žiaka 1. stupňa ZŠ v konkrétnej obci príliš veľká, alebo nie. Každé posúdenie je dnes vecou úsudku referenta.</p>
+  <p>Projekt buduje softvérový nástroj, ktorý tieto podmienky operacionalizuje: pre každý školský obvod vyprodukuje číselný dôkaz, nie iba slovný záver. Primárnym zákazníkom sú RÚŠS ako dozorný orgán a analytici ministerstva; sekundárne môžu výstup využiť samosprávy pri tvorbe VZN a novinári či mimovládne organizácie pri nezávislom monitoringu.</p>
+
+  <h3>2.2 Ciele projektu (SMART)</h3>
+  <table>
+    <tr><th>Kód</th><th>Cieľ</th><th>Merateľný výsledok</th></tr>
+    <tr><td>C1</td><td>Dostupná merateľná kontrola §44 (čiastočný MVP)</td><td>Pre každý školský obvod v pilotnej vzorke obcí PSK nástroj vyprodukuje verdikt (zelená/oranžová/červená) pre podmienky Š1–Š3, P-a, P-b, P-c, P-e s číselným dôkazom. Pre P-a platí caveat: výsledok závisí od dostupnosti kapacít z EDUZBER/CVTI; bez nich je výstup P-a označený ako neúplný proxy indikátor bez právneho záveru.</td></tr>
+    <tr><td>C2</td><td>Dátová základňa pre Prešovský kraj</td><td>Naplnená priestorová databáza (PostGIS) s overenými dátovými zdrojmi pre PSK, skóre kvality pri každom datasete.</td></tr>
+    <tr><td>C3</td><td>Pilotná validácia s RÚŠS PSK</td><td>Kalibrovaný model akceptovaný reálnymi pracovníkmi RÚŠS, merané ako false-positive sadzba pod 20 % po F6 na vzorke minimálne 10 overených obvodov. Ground truth = záver terénnej kontroly RÚŠS; FP = nástroj označil nesúlad tam, kde RÚŠS nesúlad nepotvrdil. Protokol overenia navrhuje projektový manažér a schvaľuje Senior User pred F6.</td></tr>
+    <tr><td>C4</td><td>Škálovateľná architektúra</td><td>Rozšírenie na ďalší kraj si nevyžaduje zmenu kódu enginu, stačí pridanie konfigurácie a dátových zdrojov.</td></tr>
+    <tr><td>C5</td><td>Permanentný monitoring</td><td>Nástroj dokáže po nasadení automaticky zachytiť zmenu VZN a prepočítať dotknuté obvody.</td></tr>
+  </table>
+
+  <h3>2.3 Rozsah projektu</h3>
+  <p><strong>V rozsahu:</strong></p>
+  <ul>
+    <li>Dátový pipeline pre Prešovský kraj (PSK): ingest, čistenie, uloženie do PostGIS.</li>
+    <li>Parsing VZN a odvodzovanie geometrie školských obvodov pre vybranú vzorku 5–10 obcí PSK.</li>
+    <li>Overovacie moduly (checkery) pre technické kontroly Š1, Š2, Š3 (odvodené z §44 ods. 1 a 7: pokrytie, neprekrývanie, jedna škola na obvod) a podmienky P-a (kapacita), P-b (vzdialenosť), P-c (doprava), P-e (segregácia).</li>
+    <li>LLM reasoning vrstva pre mäkké podmienky P-e s odôvodnením v jazyku zákona.</li>
+    <li>Výstupná vrstva: semaforový report, interaktívna mapa, rebríček porušení.</li>
+    <li>Pilotná validácia s RÚŠS PSK a kalibrácia prahov.</li>
+    <li>Rozšírenie na celý Prešovský kraj (F6).</li>
+    <li>Škálovanie na 8 krajov (F7, priebežne).</li>
+  </ul>
+  <p><strong>Mimo rozsahu MVP (odložené do Fázy 2 programu):</strong></p>
+  <ul>
+    <li>Podmienka P-d (právo na vyučovanie v jazyku národnostnej menšiny) a P-f (princíp inkluzívneho vzdelávania, ŠVVP).</li>
+    <li>Napojenie na živé chránené registre (REGOB, evidencia obyvateľstva MV SR).</li>
+    <li>Automatický parser VZN pre celý kraj bez manuálneho overovania.</li>
+    <li>Rozhodovanie o naviazaní skóre na financovanie obcí; je to politické rozhodnutie ministerstva.</li>
+  </ul>
+  <p>P-d a P-f sú mimo rozsahu MVP, nie mimo rozsahu celého programu kontroly §44. Ich implementácia je plánovaná vo Fáze 2 programu.</p>
+  <p><strong>Obmedzenie rozsahu podľa typu školy:</strong> §44 zákona č. 321/2025 Z. z. sa vzťahuje na materské školy (MŠ) aj základné školy (ZŠ). Pilotné MVP pracuje primárne so základnými školami (ZŠ), keďže VZN č. 1/2023 a dostupné dáta v PSK sa týkajú ZŠ. Toto je vedomé obmedzenie rozsahu; materské školy (MŠ) budú doplnené analogicky vo Fáze 2. Výstupy MVP teda nereprezentujú úplnú kontrolu celého §44 pre všetky typy škôl.</p>
+  <p>Fáza F7 (produkčné nasadenie a škálovanie na 8 krajov) je súčasťou projektového plánu. Akceptácia produkčného nasadenia na infraštruktúre ministerstva je samostatný schvaľovací krok Projektovým výborom, oddelený od akceptácie MVP (koniec F4/F6).</p>
+
+  <h3>2.4 Predpoklady</h3>
+  <ul>
+    <li>Zákazník zabezpečí prístup k chráneným dátovým zdrojom (počty detí podľa obvodu, kapacity škôl) alebo potvrdí spôsob ich náhrady.</li>
+    <li>RÚŠS PSK bude dostupný pre validáciu počas F6.</li>
+    <li>Geoportál PSK (WFS) zostáva verejne dostupný počas celej doby projektu.</li>
+    <li>Výber vzorky obcí pre pilot bude odsúhlasený zákazníkom najneskôr pred zahájením F2.</li>
+    <li>Zákazník odsúhlasí konfigurovateľné prahy dostupnosti (km/min) pred spustením F3.</li>
+  </ul>
+
+  <h3>2.5 Obmedzenia</h3>
+  <ul>
+    <li>Projekt dodáva meranie a skóre. O naviazaní skóre na financovanie rozhoduje ministerstvo samostatne.</li>
+    <li>Záver nástroja je informatívny podklad pre RÚŠS, nie právne záväzné rozhodnutie. Pred použitím záverov voči konkrétnym obciam sa vyžaduje právne posúdenie (F6).</li>
+    <li>Údaje o počtoch detí na adresu podliehajú GDPR a sú nedostupné bez formálnej dohody s MV SR alebo príslušnou obcou.</li>
+    <li>Hranice obvodov nie sú centrálnym geodatasetom: vyplývajú z VZN obcí a ich parsing vyžaduje manuálne overovanie.</li>
+  </ul>
+
+  <h3>2.6 Hlavné výstupy (produkty)</h3>
+  <table>
+    <tr><th>Produkt</th><th>Forma</th><th>Fáza</th></tr>
+    <tr><td>Naplnený dátový inventár (DATA_INVENTORY_PSK.csv) + správa o ukončení etapy F1</td><td>CSV / dokumentácia</td><td>F1 (HOTOVÉ)</td></tr>
+    <tr><td>Katalóg kvality dátových zdrojov s gap-listom; PostGIS databáza (PSK) + routing engine</td><td>DB + dátové API + dokumentácia</td><td>F2</td></tr>
+    <tr><td>Mapa školských obvodov pre vybranú vzorku obcí</td><td>GeoJSON / mapová vrstva</td><td>F2</td></tr>
+    <tr><td>Checkery Š1–Š3, P-a, P-b, P-c, P-e s unit testmi; vyhodnocovací model (pravidlá + prahy)</td><td>Softvérový modul + unit testy</td><td>F3</td></tr>
+    <tr><td>Bodovací systém + demo dashboard pre RÚŠS (MVP)</td><td>Web aplikácia (vzorka obcí)</td><td>F4</td></tr>
+    <tr><td>Monitorovací engine (scraping VZN, detekcia zmien, automatický prepočet)</td><td>Softvérový modul</td><td>F5</td></tr>
+    <tr><td>Kalibrovaný model + validačný report; kompletný audit PSK</td><td>Dokumentácia + aktualizovaná konfigurácia + web app</td><td>F6</td></tr>
+    <tr><td>Celonárodný nástroj (8 krajov) + produkčný systém u ministerstva</td><td>Produkčný systém</td><td>F7 (samostatný schvaľovací krok)</td></tr>
+  </table>
+
+  <h3>2.7 Závislosti a rozhrania</h3>
+  <ul>
+    <li>Geoportál PSK WFS (<code>geopresovregion.sk</code>), primárny zdroj geodát. Ak prestane byť dostupný, projekt musí aktivovať náhradné zdroje z dátového katalógu.</li>
+    <li>OpenStreetMap (Geofabrik), podklad pre routing. Aktualizovaný priebežne.</li>
+    <li>Register adries MV SR: geokódovanie ulíc z VZN obcí.</li>
+    <li>CVTI SR: register škôl, počty žiakov.</li>
+    <li>REGOB / MV SR: počty detí na adresu (GAP, vyžaduje formálny prístup).</li>
+    <li>IDS Východ / DPMP: GTFS grafikon verejnej dopravy (čiastočne dostupné, zvyšok GAP).</li>
+  </ul>
+</div>
+
+<!-- SEKCIA 3 -->
+<div class="section" id="s3">
+  <h2>3. Projektový prístup</h2>
+
+  <p>Projekt je postavený na princípe "meranie pred rozhodnutím": najprv identifikujeme, aké dáta existujú a v akej kvalite, potom budujeme vyhodnocovací model, a produkčné nasadenie na infraštruktúre ministerstva riešime na záver. Toto poradie nie je náhodné: bez solídnych dát nebude ani najlepší model správny. LLM reasoning vrstva pre mäkké podmienky (P-e) je integrálnou súčasťou MVP a bude dodaná najneskôr v F3/F4; F7 pokrýva produkčné nasadenie a výber finálneho modelu LLM na infraštruktúre ministerstva.</p>
+
+  <h3>3.1 Technický prístup (päť vrstiev)</h3>
+  <table>
+    <tr><th>Vrstva</th><th>Popis</th><th>Technológia</th></tr>
+    <tr><td>1. Ingestion</td><td>Každý dataset má stabilný identifikátor (data_key). Prepnutie na lepší zdroj = editácia jedného riadka v katalógu.</td><td>Python konektory (WFS, PDF, web scraping), PostgreSQL/PostGIS</td></tr>
+    <tr><td>2. Geo-engine</td><td>Priestorová databáza, routing, polygóny obvodov z VZN, izochróny.</td><td>PostGIS, OSRM alebo Valhalla nad OSM</td></tr>
+    <tr><td>3. Rule engine</td><td>Deterministické overenie tvrdých podmienok, bez LLM. Výstup = pass/fail + číselný dôkaz.</td><td>Python / SQL checkery</td></tr>
+    <tr><td>4. LLM reasoning</td><td>Mäkké podmienky (P-e, neskôr P-f), parsing VZN textu. LLM nikdy nepočíta tvrdé čísla.</td><td>Konfigurovateľný LLM; reasoning vrstva pre P-e dodaná v MVP (F3/F4); finalizácia modelu a produkčné nasadenie na infraštruktúre ministerstva vo F7</td></tr>
+    <tr><td>5. Output</td><td>Semaforový report, mapa, rebríček porušení. Každý flag obsahuje konkrétny dôkaz.</td><td>Web frontend (React / mapová knižnica)</td></tr>
+  </table>
+
+  <h3>3.2 Pilotný kraj: Prešovský (PSK)</h3>
+  <p>Prešovský kraj bol zvolený podľa zadania zákazníka. Spomedzi ďalej zvažovaných kritérií: Geoportál PSK poskytuje cez WFS rozhranie bohatú dátovú základňu (viacero relevantných vrstiev overených naživo), vrátane vrstiev Atlasu rómskych komunít, čo je relevantné pre podmienku P-e. Architektúra nástroja je kraj-agnostická, t.j. kraj je konfiguračný parameter a rozšírenie na ďalší kraj nevyžaduje prepis kódu. Zákazník môže kedykoľvek požiadať o zmenu pilotného kraja.</p>
+
+  <h3>3.3 Budovanie postupne</h3>
+  <p>MVP (koniec F4) dodá bodovací systém a demo na vzorke 5–10 obcí. Pilot a validácia prahov prebieha v F6 na celom PSK. Škálovanie na 8 krajov (F7) prebieha priebežne: pre každý kraj sa pridávajú len konfigurácie a dátové zdroje; F7 vyžaduje samostatné schválenie Projektovým výborom.</p>
+
+  <h3>3.4 Operacionalizácia prahov</h3>
+  <p>Zákon neurčuje konkrétne prahy. Projekt ich odvodzuje od odporúčaní ministerstva ("Štandardy dodržiavania zákazu segregácie") a od bežnej praxe, ukladá ich do konfiguračného súboru a ladí počas pilotnej validácie v teréne (F6). Žiadny prah v nástroji nie je prezentovaný ako zákonná povinnosť; ide o odôvodnené prevádzkové nastavenie, ktoré môžu kompetentní ľudia meniť.</p>
+</div>
+
+<!-- SEKCIA 4 -->
+<div class="section" id="s4">
+  <h2>4. Biznis prípad</h2>
+
+  <h3>4.1 Dôvod projektu</h3>
+  <p>RÚŠS dnes nemá žiadny nástroj, ktorý by mu umožnil systematicky overovať §44 naprieč obcami. Každé posúdenie závisí od referenta, jeho skúseností a dostupného času. Zákon síce zaviedol kontrolný mechanizmus, ale bez dátovej podpory zostáva nevymáhateľný v praxi.</p>
+  <p>Ak sa skóre plnenia naváže na financovanie (rozhodnutie ministerstva, nie súčasť tohto projektu), motivácia obcí tvoriť obvody v súlade so zákonom sa zmení zo zákonnej povinnosti na finančný záujem. To je kvalitatívna zmena v exekúcii politiky.</p>
+
+  <h3>4.2 Prínosy</h3>
+  <table>
+    <tr><th>Prínos</th><th>Pre koho</th><th>Charakter</th></tr>
+    <tr><td>Očakávané skrátenie času overenia jedného obvodu (baseline a cieľová hodnota sa zmerajú počas pilotnej validácie)</td><td>RÚŠS, referenti</td><td>Kvantitatívny</td></tr>
+    <tr><td>Konzistentné rozhodovanie s rovnakým meracím štandardom pre všetky obce</td><td>RÚŠS, ministerstvo</td><td>Kvalitatívny</td></tr>
+    <tr><td>Číselný podklad pre výzvu obci a pre právne posúdenie RÚŠS/ministerstva</td><td>RÚŠS (pri výzve obci)</td><td>Právny</td></tr>
+    <tr><td>Viditeľnosť systémových problémov naprieč krajom</td><td>Analytici ministerstva</td><td>Strategický</td></tr>
+    <tr><td>Motivácia pre obce zlepšovať obvody (pri naviazaní na financovanie)</td><td>Samosprávy, žiaci</td><td>Politický / sociálny</td></tr>
+    <tr><td>Zníženie rizika segregácie v školstve</td><td>Marginalizované komunity</td><td>Spoločenský</td></tr>
+  </table>
+
+  <div class="notice">Biznis prípad je draft. Schvaľovateľný rozpočtový baseline a merateľné cieľové hodnoty prínosov (napríklad baseline doby overenia, cieľová úspora, minimálna vzorka merania) budú doplnené pred formálnym schválením PID Projektovým výborom.</div>
+
+  <h3>4.3 Hlavné varianty</h3>
+  <table>
+    <tr><th>Variant</th><th>Popis</th><th>Posúdenie</th></tr>
+    <tr><td>Nič nerobiť</td><td>§44 sa kontroluje ručne, prípad od prípadu</td><td>Nesystematické, neobhájiteľné pri vyššom počte podnetov</td></tr>
+    <tr><td>Jednoduchý register obvodov</td><td>Iba evidencia obvodov bez vyhodnocovania</td><td>Odstraňuje nevedomosť, ale nie nezhodu</td></tr>
+    <tr><td>Tento projekt (odporúčaný)</td><td>Merací nástroj s dôkazovým výstupom</td><td>Vyšší vstupný náklad, dlhodobá systémová zmena</td></tr>
+  </table>
+
+  <h3>4.4 Indikácia nákladov a prínosov</h3>
+  <div class="notice">
+    Konkrétne sumy v € a sadzby nie sú súčasťou tohto dokumentu a budú stanovené v obchodnej dohode. Nasledujúca tabuľka uvádza iba štruktúru nákladov.
+  </div>
+  <table>
+    <tr><th>Kategória</th><th>Typ</th><th>Poznámka</th></tr>
+    <tr><td>Vývoj softvéru (F1–F5)</td><td>Prácnosť (TBD v dohode)</td><td>Odhadovaný rozsah: viď tabuľka prácnosti v §9</td></tr>
+    <tr><td>Dátová infraštruktúra (PostGIS, hosting)</td><td>Externé náklady</td><td>Štandardné cloud / VPS náklady</td></tr>
+    <tr><td>LLM API náklady</td><td>Externé náklady</td><td>Závisí od objemu volaní; indikatívne nízke pri pilote</td></tr>
+    <tr><td>Získanie dát od inštitúcií</td><td>Administratívne náklady</td><td>Čas na žiadosti a dohody o dátach</td></tr>
+    <tr><td>Rozšírenie na 8 krajov (F7)</td><td>Prácnosť (TBD)</td><td>Výrazne nižší pomer náklad/prínos ako F1–F5</td></tr>
+  </table>
+</div>
+
+<!-- SEKCIA 5 -->
+<div class="section" id="s5">
+  <h2>5. Organizácia projektu</h2>
+
+  <h3>5.1 Projektová štruktúra</h3>
+  <table>
+    <tr><th>Rola</th><th>Meno / organizácia</th><th>Zodpovednosť</th></tr>
+    <tr><td>Hlavný sponzor (Executive)</td><td class="placeholder">[doplniť]</td><td>Vlastník biznis prípadu; schvaľuje financovanie a tolerancie</td></tr>
+    <tr><td>Senior User (RÚŠS / odbor školstva)</td><td class="placeholder">[doplniť]</td><td>Definuje požiadavky na výstup; potvrdí, že nástroj zodpovedá potrebám kontroly</td></tr>
+    <tr><td>Senior Supplier (dodávateľ)</td><td class="placeholder">[doplniť]</td><td>Zodpovedá za technickú realizáciu; garantuje kvalitu softvéru</td></tr>
+    <tr><td>Projektový manažér</td><td class="placeholder">[doplniť]</td><td>Denné riadenie; komunikácia; reporting Projektovému výboru; eskalácia</td></tr>
+    <tr><td>Dátový inžinier</td><td class="placeholder">[doplniť]</td><td>Dátový pipeline, PostGIS, konektory na dátové zdroje</td></tr>
+    <tr><td>GIS / geo-inžinier</td><td class="placeholder">[doplniť]</td><td>Routing engine, polygóny obvodov, priestorové analýzy</td></tr>
+    <tr><td>Backend vývojár</td><td class="placeholder">[doplniť]</td><td>Rule engine, LLM integration, API</td></tr>
+    <tr><td>Frontend vývojár</td><td class="placeholder">[doplniť]</td><td>Dashboard, mapa, export reportov</td></tr>
+    <tr><td>Právny poradca</td><td class="placeholder">[doplniť]</td><td>GDPR posúdenie, právna obhájiteľnosť záverov (F6)</td></tr>
+  </table>
+
+  <h3>5.2 Rozhodovacia právomoc</h3>
+  <p>Projektový výbor (Hlavný sponzor + Senior User + Senior Supplier) schvaľuje: PID, prechody medzi fázami, žiadosti o zmenu s dopadom na tolerancie, a eskalované riziká. Projektový manažér rozhoduje samostatne v rámci odsúhlasených tolerancií.</p>
+  <div class="notice">Ak funkcie Hlavného sponzora a Projektového manažéra zastáva jedna osoba, projekt musí určiť nezávislý Project Assurance pre overenie kvality a nestrannosti rozhodnutí (viď §11, prispôsobenie PRINCE2).</div>
+</div>
+
+<!-- SEKCIA 6 -->
+<div class="section" id="s6">
+  <h2>6. Prístup k riadeniu kvality</h2>
+
+  <h3>6.1 Štandardy kvality</h3>
+  <ul>
+    <li>Každý produkt (výstup fázy) má dokumentované akceptačné kritériá pred odovzdaním Projektovému výboru.</li>
+    <li>Checkery tvrdých podmienok musia mať automatizované unit testy pokrývajúce aspoň hraničné prípady (nulová vzdialenosť, prekrývajúce sa obvody, škola bez žiakov).</li>
+    <li>Dátové zdroje sú hodnotené skóre kvality 1–10 podľa aktuálnosti, úplnosti a preukázateľnosti. Výstupný report vždy uvádza kvalitu vstupov, z ktorých verdikt vychádza.</li>
+    <li>LLM odôvodnenia prechádzajú manuálnou kontrolou vzorky počas F6.</li>
+  </ul>
+
+  <h3>6.2 Akceptačné kritériá MVP (koniec F4)</h3>
+  <ul>
+    <li>Pre každý obvod vo vzorke: verdikt pre podmienky Š1–Š3, P-a, P-b, P-c, P-e s číselným dôkazom. Pre P-a sa akceptuje označenie "neúplné / proxy" ak kapacity z EDUZBER nie sú k dispozícii.</li>
+    <li>Čas generovania reportu pre jednu obec: pod 5 minút na bežnom serveri (navrhovaná metrika, vyžaduje schválenie Výborom).</li>
+    <li>Dashboard je použiteľný bez technickej asistencie referentom RÚŠS.</li>
+  </ul>
+  <div class="notice">
+    Akceptačné metriky (čas reportu pod 5 minút, použiteľnosť dashboardu) sú návrhom PID a vyžadujú schválenie Projektovým výborom; nevyplývajú z PRD ani z dodávacieho plánu.
+  </div>
+
+  <h3>6.3 Validačné kritériá pilotu (koniec F6)</h3>
+  <ul>
+    <li>False-positive sadzba pod 20 % na vzorke minimálne 10 overených obvodov (ground truth = záver terénnej kontroly RÚŠS PSK).</li>
+    <li>RÚŠS PSK akceptuje výstupy modelu ako použiteľný podklad pre výzvu obci.</li>
+  </ul>
+
+  <h3>6.4 Revízie a schvaľovanie</h3>
+  <p>Projektový výbor revizuje každý hlavný produkt na hranici fázy. Menšie iteratívne výstupy kontroluje Projektový manažér spolu s Senior Userom počas fázy. Nedostatky nájdené pri revízii sa spravujú ako otvorené body a musia byť vyriešené pred prechodom do ďalšej fázy.</p>
+</div>
+
+<!-- SEKCIA 7 -->
+<div class="section" id="s7">
+  <h2>7. Prístup k riadeniu rizík</h2>
+
+  <h3>7.1 Postup</h3>
+  <p>Riziká sa identifikujú na začiatku každej fázy, zaznamenávajú do registra a hodnotia z hľadiska pravdepodobnosti a dopadu. Vlastník každého rizika zodpovedá za realizáciu opatrenia. Projektový manažér reportuje stav registra Projektovému výboru na každej hranici fázy.</p>
+
+  <h3>7.2 Register rizík</h3>
+  <table>
+    <tr><th>ID</th><th>Riziko</th><th>Dopad</th><th>Pravdepodobnosť</th><th>Opatrenie</th></tr>
+    <tr class="risk-high">
+      <td>R01</td>
+      <td>Počty detí na adresu sú nedostupné (GDPR / REGOB)</td>
+      <td>Vysoký: bez detailov per adresa podmienka P-a a P-b nie je presná</td>
+      <td>Vysoká: dáta sú chránené zákonom</td>
+      <td>Dohodnúť spôsob agregovaného prístupu s MV SR alebo mestom; proxy = obecný agregát z deti_0_14_obce; formálna žiadosť o sprístupnenie v F1</td>
+    </tr>
+    <tr class="risk-high">
+      <td>R02</td>
+      <td>Hranice školských obvodov nie sú centrálnym geodatasetom</td>
+      <td>Vysoký: bez polygónov obvodov nie je možné vykonať priestorové testy</td>
+      <td>Vysoká: platí pre väčšinu obcí</td>
+      <td>Parsovať VZN texty a geokódovať ulice ručne/poloautomaticky pre vybranú vzorku; výsledok overovať so zástupcami obcí; zaznačiť presnosť</td>
+    </tr>
+    <tr class="risk-high">
+      <td>R03</td>
+      <td>Kapacity škôl nie sú verejne dostupné</td>
+      <td>Stredný: podmienka P-a je nepresná, proxy je počet žiakov</td>
+      <td>Stredná</td>
+      <td>Žiadosť CVTI SR / mestá o EDUZBER export; dočasne nahradiť počtom žiakov ako proxy kapacity s označením "P-a neúplné bez EDUZBER" bez právneho záveru</td>
+    </tr>
+    <tr class="risk-med">
+      <td>R04</td>
+      <td>Plný GTFS grafikon MHD/PAD nie je verejne dostupný (GAP)</td>
+      <td>Stredný: podmienka P-c je bez plného grafikonu neúplná; polohy zastávok bez časov spojov slúžia len ako dočasný proxy indikátor</td>
+      <td>Stredná</td>
+      <td>Pracovné oslovenie IDS Východ, DPMP, SAD Prešov o GTFS grafikon; záložný zdroj: verejné cestovné poriadky (ak strojovo dostupné); scraping imhd.sk len po právnom posúdení licencie a podmienok použitia; fallback: overenie polohy zastávky v dochádzkovej vzdialenosti bez grafikonu s explicitným flagom "P-c neúplné"</td>
+    </tr>
+    <tr class="risk-med">
+      <td>R05</td>
+      <td>OSM atribúty povrchu a chodníkov sú neúplné v niektorých obciach</td>
+      <td>Stredný: routing môže nadsadzovať dostupnosť pešo po nespevnenej ceste</td>
+      <td>Stredná (podľa DATA_CATALOG je pokrytie atribútu surface približne 50 %; presné pokrytie pre PSK sa overí vo fáze dátového pipeline)</td>
+      <td>Kombinovať OSM s geoportál PSK vrstvami ciest I/II/III. triedy; flagovať obvody s nízkou pokrytosťou atribútov ako "nižšia istota"</td>
+    </tr>
+    <tr class="risk-med">
+      <td>R06</td>
+      <td>Atlas rómskych komunít je z roku 2019</td>
+      <td>Stredný: podmienka P-e môže odrážať zastarané rozmiestnenie komunít</td>
+      <td>Stredná</td>
+      <td>Uviesť vek dát v každom výstupe; doplniť aktuálnejšími obecnými štatistikami ak dostupné; odporučiť aktualizáciu Atlasu ako záver pilotnej validácie</td>
+    </tr>
+    <tr class="risk-low">
+      <td>R07</td>
+      <td>Kalibrácia prahov zlyhá, RÚŠS odmietne výsledky pilotu</td>
+      <td>Vysoký: narúša akceptáciu MVP</td>
+      <td>Nízka pri dostatočnom zapojení RÚŠS počas F6</td>
+      <td>Zapojiť RÚŠS do definovania prahov od F2; realizovať aspoň 2 workshopy počas F6</td>
+    </tr>
+    <tr class="risk-low">
+      <td>R08</td>
+      <td>LLM odôvodnenia neobstoja pri právnej kontrole</td>
+      <td>Stredný: znižuje dôveryhodnosť záverov</td>
+      <td>Stredná</td>
+      <td>LLM generuje len odôvodnenie, tvrdé čísla dodáva deterministický engine; právne posúdenie záverov pred nasadením (F6)</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SEKCIA 8 -->
+<div class="section" id="s8">
+  <h2>8. Prístup ku komunikácii</h2>
+
+  <table>
+    <tr><th>Správa</th><th>Komu</th><th>Frekvencia</th><th>Forma</th></tr>
+    <tr><td>Správa o postupe (Highlight Report)</td><td>Projektový výbor</td><td>Každé dva týždne</td><td>Email / krátky dokument (stav fázy, riziká, eskalácie)</td></tr>
+    <tr><td>Správa o ukončení etapy (End Stage Report)</td><td>Projektový výbor</td><td>Na konci každej fázy</td><td>Dokument + prezentácia</td></tr>
+    <tr><td>Žiadosť o prechod do ďalšej fázy (Stage Boundary)</td><td>Projektový výbor</td><td>Na hranici fázy</td><td>Email + aktualizovaný PID (ak je potrebná zmena)</td></tr>
+    <tr><td>Žiadosť o zmenu</td><td>Projektový výbor</td><td>Ad hoc</td><td>Formulár žiadosti o zmenu</td></tr>
+    <tr><td>Správa o výnimke (Exception Report)</td><td>Projektový výbor</td><td>Ad hoc (pri prekročení tolerancií)</td><td>Dokument, bezodkladne</td></tr>
+    <tr><td>Pracovné stretnutia</td><td>Projektový tím</td><td>Týždenné (fázy aktívneho vývoja)</td><td>Online / osobné</td></tr>
+  </table>
+</div>
+
+<!-- SEKCIA 9 -->
+<div class="section" id="s9">
+  <h2>9. Projektový plán</h2>
+
+  <h3>9.1 Fázy a míľniky</h3>
+  <div class="notice">Číslovanie fáz podľa projektového plánu (PLAN.html): 7 fáz F1–F7. Fáza F1 (Analýza vstupných údajov) je ukončená; správa o ukončení etapy je dokument FAZA1.<br><strong>Prevodná poznámka:</strong> tento dokument používa schému PLAN.html (F1–F7, bez kick-off fázy). Pracovný dodávací plán DELIVERY_PLAN.md používa odlišnú schému Fázy 0–7, kde Fáza 0 = kick-off + prístup k dátam. Mapovanie: PLAN F1 ↔ DELIVERY F1, PLAN F2 ↔ DELIVERY F2, PLAN F3 ↔ DELIVERY F3 (mäkké podmienky + AI), PLAN F4 ↔ DELIVERY F4, PLAN F5 ↔ DELIVERY F2/F4 (VZN monitoring), PLAN F6 (pilot PSK) ↔ DELIVERY F5 (pilot validácia) + F6 (celý PSK), PLAN F7 ↔ DELIVERY F7 (škálovanie na 8 krajov). Záväzná je schéma PLAN.html (F1–F7) použitá v tomto PID.</div>
+  <table>
+    <tr><th>Fáza</th><th>Popis</th><th>Trvanie</th><th>Kľúčový výstup</th><th>Míľnik</th></tr>
+    <tr><td>F1</td><td>Analýza vstupných údajov</td><td>1–2 týždne</td><td>Dátový inventár (DATA_INVENTORY_PSK.csv) + ESR F1</td><td>M1: Katalóg a gap-list (HOTOVÉ)</td></tr>
+    <tr><td>F2</td><td>Dostupnosť a kvalita dát</td><td>2 týždne</td><td>PostGIS DB, mapa obvodov vzorky, routing engine, rozšírený katalóg kvality</td><td></td></tr>
+    <tr><td>F3</td><td>Model vyhodnotenia bodov §44</td><td>2 týždne</td><td>Checkery Š1–Š3, P-a, P-b, P-c, P-e s unit testmi; prahy a pravidlá</td><td></td></tr>
+    <tr><td>F4</td><td>Hodnotiace kritériá + skóre</td><td>1–2 týždne</td><td>Bodovací systém (skóre per podmienka); demo dashboard pre RÚŠS na vzorke obcí</td><td>M4: MVP (~6 týždňov od F2)</td></tr>
+    <tr><td>F5</td><td>VZN monitoring</td><td>2–3 týždne</td><td>Monitorovací engine (scraping VZN, detekcia zmien, automatický prepočet skóre)</td><td></td></tr>
+    <tr><td>F6</td><td>Pilot PSK: validácia a kalibrácia</td><td>2–3 týždne</td><td>Kalibrovaný model, validačný report, kompletný audit PSK</td><td>M6: Akceptovaný pilot PSK</td></tr>
+    <tr><td>F7</td><td>Produkčné nasadenie + finalizácia LLM (výber finálneho modelu, ministerský deployment) + škálovanie</td><td>4–6 týždňov (priebežne)</td><td>Celonárodný nástroj (8 krajov), produkčný systém u ministerstva</td><td>M7: Produkčné nasadenie (samostatný schvaľovací krok Výboru)</td></tr>
+  </table>
+
+  <h3>9.2 Indikatívna prácnosť a rozpočet</h3>
+  <div class="notice">
+    Konkrétne sadzby a celkové sumy sú predmetom obchodnej dohody. Nasledujúca tabuľka uvádza odhadovanú prácnosť v človekodňoch a typy externých nákladov. Odhady prácnosti v človekodňoch (vrátane súčtu 55–86) sú návrhom PID a vyžadujú schválenie; nevyplývajú z PRD ani z dodávacieho plánu, ktorý uvádza iba kalendárne trvania.
+  </div>
+  <table>
+    <tr><th>Fáza</th><th>Prácnosť (čl.-dni, indikatívne)</th><th>Externé náklady (typ)</th></tr>
+    <tr><td>F1: Analýza vstupných údajov</td><td>3–5</td><td>Právne posúdenie GDPR, prípadné poplatky za dáta</td></tr>
+    <tr><td>F2: Dostupnosť a kvalita dát</td><td>8–12</td><td>Cloud / VPS hosting (PostGIS), OSM extract</td></tr>
+    <tr><td>F3: Model vyhodnotenia</td><td>8–12</td><td>Minimálne</td></tr>
+    <tr><td>F4: Hodnotiace kritériá + skóre</td><td>8–12</td><td>LLM API (objem pilotu, indikatívne nízky); frontend hosting</td></tr>
+    <tr><td>F5: VZN monitoring</td><td>5–8</td><td>Hosting monitorovacieho enginu</td></tr>
+    <tr><td>F6: Pilot PSK</td><td>8–12</td><td>Cestovné na terénnu validáciu s RÚŠS, právna kontrola, zvýšené náklady na dáta</td></tr>
+    <tr><td>F7: Nasadenie + škálovanie</td><td>15–25</td><td>Regionálne dátové zdroje (GTFS, Atlas), hosting, LLM ministerstva</td></tr>
+    <tr><td><strong>Celkom (F1–F7)</strong></td><td><strong>55–86 čl.-dní (indikatívne, finálne sumy TBD v obchodnej dohode)</strong></td><td><strong>TBD v obchodnej dohode</strong></td></tr>
+  </table>
+</div>
+
+<!-- SEKCIA 10 -->
+<div class="section" id="s10">
+  <h2>10. Projektové kontroly</h2>
+
+  <h3>10.1 Hranice fáz a schvaľovanie</h3>
+  <p>Na konci každej fázy (F1–F7) Projektový manažér predloží Projektovému výboru Správu o ukončení etapy (End Stage Report) a Žiadosť o prechod do ďalšej fázy. Výbor môže schváliť prechod, požiadať o nápravu, alebo eskalovať mimo projektu na programme management, ministerstvo alebo poverený riadiaci orgán.</p>
+
+  <h3>10.2 Tolerancie</h3>
+  <table>
+    <tr><th>Dimenzia</th><th>Tolerancia (fáza)</th><th>Tolerancia (celý projekt)</th></tr>
+    <tr><td>Čas</td><td>+/- 10 % trvania fázy bez eskalácie (návrh PID; vyžaduje schválenie Výborom)</td><td>+/- 10 % celkového harmonogramu projektu</td></tr>
+    <tr><td>Náklady</td><td>+/- 10 % rozpočtu fázy bez eskalácie (návrh PID; vyžaduje schválenie Výborom)</td><td>+/- 10 % celkového rozpočtu</td></tr>
+    <tr><td>Rozsah</td><td>Zmeny produktov fázy vyžadujú žiadosť o zmenu; odloženie do Fázy 2 programu povolené pre P-d, P-f</td><td>Jadro MVP (Š1–Š3, P-a, P-b, P-c, P-e) je nemenné bez schválenia Výboru; rozsah 0 (bez schválenia)</td></tr>
+    <tr><td>Kvalita</td><td>False-positive sadzba nad 20 % po F6 = automatická eskalácia</td><td>Všetky akceptačné kritériá z §6.2 (koniec F4) a validačné kritériá z §6.3 (koniec F6) musia byť splnené pred schválením M6</td></tr>
+    <tr><td>Riziko</td><td>Nové riziko s dopadom "Vysoký" = bezodkladná správa o výnimke</td><td>—</td></tr>
+  </table>
+
+  <h3>10.3 Prístup k riadeniu zmien (Change Control)</h3>
+  <p>Každá navrhovaná zmena rozsahu, harmonogramu, rozpočtu alebo kvality produktov projektu sa eviduje ako žiadosť o zmenu (Change Request). Zodpovednosti:</p>
+  <ul>
+    <li>Projektový manažér: evidencia žiadostí o zmenu, posúdenie dopadu, predloženie Výboru.</li>
+    <li>Projektový výbor: schvaľuje zmeny s dopadom na tolerancie alebo míľniky; Hlavný sponzor rozhoduje o zmenách s dopadom na biznis prípad.</li>
+    <li>Projektový manažér rozhoduje samostatne o zmenách do výšky tolerancií podľa §10.2.</li>
+  </ul>
+  <p>Žiadosti o zmenu sa zaznamenávajú v Issue Registri (viď §11); každá schválená zmena sa premietne do aktualizácie PID alebo príslušného plánu fázy. Neschválené zmeny sa nesmú realizovať.</p>
+
+  <h3>10.4 Reporting</h3>
+  <p>Projektový manažér reportuje stav každé dva týždne (Highlight Report). Na hranici fázy nasleduje End Stage Report. Projektový výbor sa stretáva na začiatku každej fázy (alebo aspoň na kľúčových míľnikoch M1, M4, M6, M7).</p>
+</div>
+
+<!-- SEKCIA 11 -->
+<div class="section" id="s11">
+  <h2>11. Prispôsobenie PRINCE2</h2>
+
+  <p>PRINCE2 bol aplikovaný primerane rozsahu projektu. Niektoré prvky metodiky sú zjednodušené:</p>
+  <ul>
+    <li>Daily log a Issue Register sú vedené zjednodušene v projektovom manageri a v histórii commitov (GitHub); Projektový manažér je zodpovedný za ich aktuálnosť a predloženie Výboru na konci každej fázy.</li>
+    <li>Funkcie Hlavného sponzora a Projektového manažéra môžu byť vykonávané jednou osobou za predpokladu určenia nezávislého Project Assurance (pozri §5.2); táto rola zabezpečuje nezávislé overenie kvality a nestrannosť rozhodnutí.</li>
+    <li>Správy o postupe (Highlight Reports) sú emailové; formálny dokument sa vyžaduje len pri eskaláciách alebo výnimkách.</li>
+    <li>Fázy F6 a F7 majú každá vlastný End Stage Report a samostatné schválenie prechodu Projektovým výborom. Pre finálnu fázu F7 Projektový manažér predloží End Stage Report a navyše samostatný End Project Report, ktorý zhrnie výkon celého projektu vrátane poslednej etapy. Pre F6 je ESR povinný vždy, nakoľko M6 je kľúčový akceptačný míľnik.</li>
+    <li>Produkčné nasadenie (F7, M7) vyžaduje samostatné schválenie Projektovým výborom oddelene od akceptácie MVP (M4) a pilotu (M6).</li>
+  </ul>
+  <p>Všetky odchýlky od štandardného PRINCE2 sú v súlade s odporučeniami metodiky pre projekty stredného rozsahu (tailoring).</p>
+</div>
+
+</body>
+</html>
