@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projektový plán — kontrola §44</title>
+<style>
+  :root{
+    --navy:#0f2747; --teal:#1f9e8f; --teal-d:#157a6e;
+    --ink:#1a2230; --muted:#5b6878; --line:#e3e8ef; --bg:#f5f7fa;
+    --amber:#e0a106; --red:#d6483b; --green:#1f9e8f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);overflow:hidden;
+    -webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .deck *{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .stagewrap{position:fixed;inset:0;overflow:hidden;background:var(--bg)}
+  .deck{width:1280px;height:720px;position:absolute;top:0;left:0;transform-origin:top left;background:var(--bg)}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:48px 110px;animation:fade .35s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  h1{font-size:3.0rem;line-height:1.1;color:var(--navy);font-weight:800;letter-spacing:-.02em}
+  h2{font-size:2.0rem;color:var(--navy);font-weight:750;margin-bottom:.4em;letter-spacing:-.01em}
+  .kicker{color:var(--teal-d);font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    font-size:.8rem;margin-bottom:1.2em}
+  p,li{font-size:1.25rem;line-height:1.55;color:var(--ink)}
+  .lead{font-size:1.55rem;color:var(--muted);margin-top:.6em;max-width:60ch}
+  ul{margin:.6em 0 0 1.1em}li{margin:.45em 0}
+  .sub{color:var(--muted);font-size:1.05rem}
+  .grid{display:grid;gap:14px;margin-top:1.2em}
+  .g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+    box-shadow:0 1px 2px rgba(16,30,60,.04)}
+  .card h3{font-size:1.05rem;color:var(--navy);margin-bottom:.4em}
+  .card p{font-size:1.05rem;color:var(--ink)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:.06em;background:#e7f4f2;color:var(--teal-d)}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+    border-radius:9px;background:var(--navy);color:#fff;font-weight:800;font-size:1.05rem;margin-right:12px}
+  .htitle{display:flex;align-items:center}
+  table{width:100%;border-collapse:collapse;margin-top:1em;font-size:1.02rem}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--navy);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+  td .code{font-weight:800;color:var(--teal-d)}
+  .flow{display:flex;align-items:stretch;gap:0;margin-top:1.4em;flex-wrap:wrap}
+  .step{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .step b{color:var(--navy);font-size:1.0rem}.step span{display:block;color:var(--muted);font-size:.9rem;margin-top:.3em}
+  .arrow{display:flex;align-items:center;color:var(--teal);font-size:1.5rem;padding:0 5px}
+  .ol{list-style:none;margin-top:1em}
+  .ol li{display:flex;align-items:flex-start;margin:.55em 0;font-size:1.2rem}
+  .ol .num{flex:0 0 auto;width:30px;height:30px;font-size:.95rem;margin-right:14px}
+  .prah{margin-top:1.1em;background:#eef6f4;border:1px solid #cfe6e1;border-radius:12px;padding:14px 18px}
+  .prah p{font-size:1.05rem;color:var(--ink)}
+  .finance{display:flex;gap:18px;margin-top:1.3em;align-items:stretch}
+  .fbox{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}
+  .fbox .big{font-size:2.6rem;font-weight:800;color:var(--teal-d)}
+  .fbox.red .big{color:var(--red)} .fbox.amber .big{color:var(--amber)}
+  .fbox span{display:block;color:var(--muted);font-size:1.0rem;margin-top:.3em}
+  .foot{position:absolute;bottom:30px;left:110px;right:110px;display:flex;justify-content:space-between;
+    align-items:center;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:10px}
+  .tapzone{position:fixed;top:0;bottom:0;width:42%;z-index:60;display:flex;align-items:center;
+    cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .tapzone.left{left:0;justify-content:flex-start;padding-left:12px}
+  .tapzone.right{right:0;justify-content:flex-end;padding-right:12px}
+  .tapzone span{display:flex;align-items:center;justify-content:center;width:74px;height:74px;
+    border-radius:50%;background:rgba(255,255,255,.85);border:2px solid var(--teal);
+    box-shadow:0 4px 14px rgba(15,39,71,.14);color:var(--teal-d);font-size:3rem;font-weight:700;line-height:1;
+    opacity:.85;transition:opacity .2s,transform .2s,background .2s}
+  .tapzone.left span{padding-right:5px} .tapzone.right span{padding-left:5px}
+  .tapzone:hover span,.tapzone:active span{opacity:1;transform:scale(1.08);background:#fff}
+  .q{font-size:2.2rem;color:var(--navy);font-weight:750;max-width:26ch;line-height:1.2}
+  .tag{font-size:.95rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="stagewrap">
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide active">
+    <div class="kicker">Projektový plán · pre konzultáciu so zákazníkom</div>
+    <h1>Nástroj na priebežnú<br>kontrolu §44</h1>
+    <p class="lead">Od identifikácie dát cez model vyhodnotenia až po semaforové skóre, ktoré
+    sa dá naviazať na financovanie zriaďovateľov.</p>
+    <p class="tag" style="margin-top:2em">Pilot: Prešovský kraj · Verzia 0.1</p>
+  </section>
+
+  <!-- 2 · Vízia -->
+  <section class="slide">
+    <div class="kicker">Vízia</div>
+    <h2>Permanentný monitorovací nástroj</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Sleduje VZN</h3><p>Priebežne scrapuje všeobecne záväzné nariadenia
+      všetkých krajov a miest, ktorými zriaďovatelia určujú školské obvody.</p></div>
+      <div class="card"><h3>Deteguje zmeny</h3><p>Rozpozná, keď sa VZN zmení, a automaticky
+      prehodnotí plnenie podmienok §44.</p></div>
+      <div class="card"><h3>Vyhodnocuje semaforom</h3><p>Pre každého zriaďovateľa ukáže, či
+      a do akej miery plní podmienky zákona.</p></div>
+      <div class="card"><h3>Beží u ministerstva</h3><p>Prevádzka na vlastnej infraštruktúre
+      ministerstva, s vlastným LLM (rieši sa v záverečnej fáze).</p></div>
+    </div>
+  </section>
+
+  <!-- 3 · Motivačný princíp -->
+  <section class="slide">
+    <div class="kicker">Prečo · motivačný princíp</div>
+    <h2>Skóre plnenia → výška financovania</h2>
+    <p class="lead">Semaforové skóre slúži ako podklad pre prideľovanie prostriedkov. Motivácia
+    pre kraje a mestá plniť podmienky zákona.</p>
+    <div class="finance">
+      <div class="fbox red"><div class="big">60 %</div><span>plnenie → 60 % prostriedkov</span></div>
+      <div class="fbox amber"><div class="big">80 %</div><span>plnenie → 80 % prostriedkov</span></div>
+      <div class="fbox"><div class="big">100 %</div><span>plnenie → 100 % prostriedkov</span></div>
+    </div>
+    <p class="sub" style="margin-top:1em">Dodávame meranie a skóre; naviazanie na výšku financovania
+    je rozhodnutie ministerstva — nástroj ho umožní.</p>
+  </section>
+
+  <!-- 4 · Prevádzková slučka -->
+  <section class="slide">
+    <div class="kicker">Ako to funguje v prevádzke</div>
+    <h2>Priebežná slučka</h2>
+    <div class="flow">
+      <div class="step"><b>1 · Scrape VZN</b><span>krajov a miest</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>2 · Detekcia zmeny</b><span>nové/upravené VZN</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>3 · Vyhodnotenie §44</b><span>pravidlá + AI</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>4 · Semafor + skóre</b><span>% plnenia</span></div>
+      <div class="arrow">→</div>
+      <div class="step"><b>5 · Podklad pre financovanie</b><span>ministerstvo</span></div>
+    </div>
+    <p class="sub" style="margin-top:1.3em">Ak sa VZN nezmení, beží len periodická kontrola.
+    Pri zmene sa skóre prepočíta automaticky.</p>
+  </section>
+
+  <!-- 5 · Logika budovania -->
+  <section class="slide">
+    <div class="kicker">Logika budovania · poradie krokov</div>
+    <h2>Najprv dáta a model, LLM nakoniec</h2>
+    <ul class="ol">
+      <li><span class="num">1</span><div><b>Identifikovať všetky potrebné dáta</b> pre overenie
+      každého bodu §44 (nadväzuje na dátový katalóg z prístupovej prezentácie).</div></li>
+      <li><span class="num">2</span><div><b>Dostupnosť a kvalita</b> — ktoré dáta vieme relevantne
+      získať; rozdiel = gap, ktorý musí sprístupniť ministerstvo alebo iná inštitúcia.</div></li>
+      <li><span class="num">3</span><div><b>Model vyhodnotenia</b> každého bodu §44 — pravidlá,
+      prahy, frekvencia, presnosť, objem.</div></li>
+      <li><span class="num">4</span><div><b>Hodnotiace kritériá + skóre</b> — po jednotlivých
+      bodoch alebo celkové (dohoda so zákazníkom).</div></li>
+      <li><span class="num">5</span><div><b>Prevádzka a vlastný LLM</b> ministerstva — výber
+      a parametre modelu až tu, keď je jasné čo a ako vyhodnocujeme.</div></li>
+    </ul>
+  </section>
+
+  <!-- 6 · Osnova fáz -->
+  <section class="slide">
+    <div class="kicker">Osnova · fázy dodávky</div>
+    <h2>Sedem fáz, pilot na Prešovskom kraji</h2>
+    <table>
+      <tr><th>Fáza</th><th>Trvanie</th><th>Snímka</th></tr>
+      <tr><td><span class="code">F1</span> Analýza vstupných údajov</td><td>1–2 týž</td><td>7</td></tr>
+      <tr><td><span class="code">F2</span> Dostupnosť a kvalita dát (gap-list)</td><td>2 týž</td><td>8</td></tr>
+      <tr><td><span class="code">F3</span> Model vyhodnotenia bodov §44</td><td>2 týž</td><td>9</td></tr>
+      <tr><td><span class="code">F4</span> Hodnotiace kritériá + skóre</td><td>1–2 týž</td><td>10</td></tr>
+      <tr><td><span class="code">F5</span> VZN monitoring (scrape + detekcia zmien)</td><td>2–3 týž</td><td>11</td></tr>
+      <tr><td><span class="code">F6</span> Pilot PSK — validácia + kalibrácia</td><td>2–3 týž</td><td>12</td></tr>
+      <tr><td><span class="code">F7</span> Nasadenie u ministerstva + LLM + škálovanie</td><td>priebežne</td><td>13</td></tr>
+    </table>
+  </section>
+
+  <!-- 7 · F1 -->
+  <section class="slide">
+    <div class="kicker">Fáza 1 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F1</span> Analýza vstupných údajov</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Identifikujeme všetky dáta potrebné na overenie
+      každého bodu §44 (kapacita, vzdialenosť, doprava, jazyk, segregácia, inklúzia + štruktúra)
+      vrátane samotných VZN.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Kompletný zoznam potrebných údajov so zdrojmi —
+      rozšírený dátový katalóg.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> prístupová prezentácia + dátový katalóg. &nbsp;·&nbsp;
+    <b>Trvanie:</b> 1–2 týždne.</p></div>
+  </section>
+
+  <!-- 8 · F2 -->
+  <section class="slide">
+    <div class="kicker">Fáza 2 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F2</span> Dostupnosť a kvalita dát</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Pri každom údaji posúdime relevantnosť, presnosť,
+      frekvenciu aktualizácie a objem. Rozdelíme na „vieme získať" vs „treba sprístupniť".</p></div>
+      <div class="card"><h3>Výstup</h3><p>Katalóg s kvalitou 1–10 a vekom dát + <b>gap-list</b>:
+      dáta, ktoré musí dodať ministerstvo alebo iná inštitúcia.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> zoznam z F1, prístup k registrom. &nbsp;·&nbsp;
+    <b>Trvanie:</b> 2 týždne (závisí od rýchlosti sprístupnenia dát).</p></div>
+  </section>
+
+  <!-- 9 · F3 -->
+  <section class="slide">
+    <div class="kicker">Fáza 3 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F3</span> Model vyhodnotenia bodov §44</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Pre každý bod §44 navrhneme, ako presne overiť jeho
+      plnenie z dostupných dát — pravidlá, prahy, a v akej frekvencii sa to dá vyhodnocovať.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Vyhodnocovací model: pre každý bod vstupy → pravidlo →
+      prah → verdikt s dôkazom.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> dostupné dáta z F2. &nbsp;·&nbsp; <b>Trvanie:</b> 2 týždne.</p></div>
+  </section>
+
+  <!-- 10 · F4 -->
+  <section class="slide">
+    <div class="kicker">Fáza 4 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F4</span> Hodnotiace kritériá + skóre</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Z verdiktov zostavíme skóre plnenia — po jednotlivých
+      bodoch alebo celkové (dohoda so zákazníkom) — a navrhneme prevod na semafor a % plnenia.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Bodovací systém pripravený ako podklad pre financovanie
+      (rozhodnutie o väzbe na peniaze je na ministerstve).</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> vyhodnocovací model z F3. &nbsp;·&nbsp; <b>Trvanie:</b> 1–2 týždne.</p></div>
+  </section>
+
+  <!-- 11 · F5 -->
+  <section class="slide">
+    <div class="kicker">Fáza 5 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F5</span> VZN monitoring</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Postavíme priebežné scrapovanie VZN krajov a miest
+      a detekciu zmien; pri zmene sa automaticky spustí prepočet skóre.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Monitorovací engine, ktorý drží aktuálny stav VZN
+      a semaforové skóre bez ručného zásahu.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> bodovací systém z F4, zoznam VZN zdrojov. &nbsp;·&nbsp;
+    <b>Trvanie:</b> 2–3 týždne.</p></div>
+  </section>
+
+  <!-- 12 · F6 -->
+  <section class="slide">
+    <div class="kicker">Fáza 6 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F6</span> Pilot — Prešovský kraj</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Spustíme celý reťazec na reálnych dátach PSK,
+      porovnáme závery s realitou v teréne, doladíme prahy a odstránime falošné poplachy.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Kalibrovaný a overený model, akceptačný a validačný
+      report.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> monitoring z F5, spolupráca RÚŠS PSK. &nbsp;·&nbsp;
+    <b>Trvanie:</b> 2–3 týždne.</p></div>
+  </section>
+
+  <!-- 13 · F7 -->
+  <section class="slide">
+    <div class="kicker">Fáza 7 · z osnovy</div>
+    <h2 class="htitle"><span class="num">F7</span> Nasadenie + LLM + škálovanie</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Čo robíme</h3><p>Nasadíme nástroj na infraštruktúru ministerstva,
+      vyberieme a nastavíme vlastný LLM (typ a parametre), rozšírime na všetkých 8 krajov.</p></div>
+      <div class="card"><h3>Výstup</h3><p>Prevádzkovaný celonárodný nástroj s pravidelným
+      vyhodnocovaním a monitoringom.</p></div>
+    </div>
+    <div class="prah"><p><b>Vstupy:</b> kalibrovaný model z F6, infraštruktúra ministerstva.
+    &nbsp;·&nbsp; <b>Trvanie:</b> priebežne (4–6 týž na základné nasadenie).</p></div>
+  </section>
+
+  <!-- 14 · Čo potrebujeme -->
+  <section class="slide">
+    <div class="kicker">Čo potrebujeme od zákazníka</div>
+    <h2>Aby projekt bežal na reálnych dátach</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Prístup k dátam (gap-list)</h3><p>počty detí podľa obvodu, kapacity
+      škôl, registre — to, čo nezískame z verejných zdrojov.</p></div>
+      <div class="card"><h3>Odsúhlasenie kritérií</h3><p>prahy plnenia a spôsob skóre (po bodoch
+      vs celkové).</p></div>
+      <div class="card"><h3>Pilot + infraštruktúra</h3><p>vzorka/kraj na pilot, kontakt na RÚŠS,
+      neskôr infraštruktúra + LLM ministerstva.</p></div>
+    </div>
+  </section>
+
+  <!-- 15 · Otvorené otázky -->
+  <section class="slide">
+    <div class="kicker">Otvorené otázky</div>
+    <h2>Rozhodnutia, ktoré urobíme spolu</h2>
+    <ul>
+      <li><b>Skóre:</b> po jednotlivých bodoch §44, alebo jedno celkové číslo na zriaďovateľa?</li>
+      <li><b>Väzba na financovanie:</b> aká presná funkcia (lineárna % plnenia, alebo prahové
+      pásma)?</li>
+      <li><b>Frekvencia:</b> ako často prehodnocovať (pri zmene VZN, mesačne, ročne)?</li>
+      <li><b>LLM:</b> typ a parametre vlastného modelu ministerstva — riešime v F7.</li>
+    </ul>
+  </section>
+
+  <!-- 16 · Míľniky + otázka -->
+  <section class="slide" style="justify-content:center;align-items:flex-start">
+    <div class="kicker">Míľniky</div>
+    <p class="q">Pilot PSK do ~10–12 týždňov, potom prevádzka a škálovanie.</p>
+    <p class="lead" style="margin-top:1em">Sedí takto navrhnutý postup a rozsah? Po vašom
+    odsúhlasení spustíme Fázu 1 — analýzu vstupných údajov.</p>
+  </section>
+
+<div class="foot">
+  <span>Projektový plán · kontrola §44 · verejné školské obvody</span>
+  <span id="counter">1 / 16</span>
+</div>
+</div>
+</div>
+
+<div class="tapzone left"  onclick="go(-1)" aria-label="Predošlá snímka"><span>‹</span></div>
+<div class="tapzone right" onclick="go(1)"  aria-label="Ďalšia snímka"><span>›</span></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){slides[i].classList.remove('active');i=(n+slides.length)%slides.length;
+    slides[i].classList.add('active');document.getElementById('counter').textContent=(i+1)+' / '+slides.length;}
+  function go(d){show(i+d);}
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' ')go(1);
+    if(e.key==='ArrowLeft')go(-1);
+    if(e.key==='Home')show(0);
+    if(e.key==='End')show(slides.length-1);
+  });
+  const deck=document.getElementById('deck');
+  function fit(){
+    const s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    const x=(window.innerWidth-1280*s)/2, y=(window.innerHeight-720*s)/2;
+    deck.style.transform='translate('+x+'px,'+y+'px) scale('+s+')';
+  }
+  window.addEventListener('resize',fit);
+  window.addEventListener('orientationchange',fit);
+  fit(); show(0);
+  let tx=0;
+  document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
+  document.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>60) go(dx<0?1:-1);
+  },{passive:true});
+</script>
+</body>
+</html>
