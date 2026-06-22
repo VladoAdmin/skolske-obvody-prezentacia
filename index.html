@@ -60,10 +60,14 @@
     cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .tapzone.left{left:0;justify-content:flex-start;padding-left:12px}
   .tapzone.right{right:0;justify-content:flex-end;padding-right:12px}
-  .tapzone span{display:flex;align-items:center;justify-content:center;width:48px;height:48px;
-    border-radius:50%;background:rgba(255,255,255,.7);border:1px solid var(--line);
-    color:var(--navy);font-size:1.8rem;opacity:.35;transition:opacity .2s,background .2s}
-  .tapzone:hover span,.tapzone:active span{opacity:.9;background:#fff}
+  .tapzone span{display:flex;align-items:center;justify-content:center;width:74px;height:74px;
+    border-radius:50%;background:rgba(255,255,255,.85);border:2px solid var(--teal);
+    box-shadow:0 4px 14px rgba(15,39,71,.14);
+    color:var(--teal-d);font-size:3rem;font-weight:700;line-height:1;
+    opacity:.85;transition:opacity .2s,transform .2s,background .2s}
+  .tapzone.left span{padding-right:5px}
+  .tapzone.right span{padding-left:5px}
+  .tapzone:hover span,.tapzone:active span{opacity:1;transform:scale(1.08);background:#fff}
   .q{font-size:2.2rem;color:var(--navy);font-weight:750;max-width:24ch;line-height:1.2}
   .tag{font-size:.95rem;color:var(--muted)}
   .agenda{list-style:none;margin:1em 0 0 0;columns:1}
